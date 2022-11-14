@@ -4,8 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< HEAD
 @layer base {
   html {
     font-family: "Raleway", sans-serif;
   }
 }
+=======
+@layer components {
+    .unhighlighted-link {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+>>>>>>> b77c69f0c32c2e06ebe53c8f8bed81b35c0f6fde
