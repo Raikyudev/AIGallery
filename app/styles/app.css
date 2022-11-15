@@ -420,6 +420,7 @@ video {
 
 html {
   font-family: "Raleway", sans-serif;
+  background-color: black;
 }
 
 *, ::before, ::after{

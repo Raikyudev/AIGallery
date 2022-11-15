@@ -14,7 +14,7 @@ export default function Index() {
         className=" w-full  z-0 absolute  overflow-hidden blur-sm"
         alt="background"
       />
-      <div className="relative  grid grid-cols-3 gap-2 w-full mt-32 md:mt-56 ml-2 sm:ml-6 xl:ml-32 blur-sm xl:mt-96">
+      <div className="relative  grid grid-cols-3 gap-2  mt-32 md:mt-56 ml-2 sm:ml-6 xl:ml-32 blur-sm xl:mt-96">
         <div className="col-span-1 ">
           <img
             src={photo3}
