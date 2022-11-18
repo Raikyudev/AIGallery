@@ -1,10 +1,11 @@
 import logo from "../assets/A.I._GALLERY.png";
 
+
 export const Navbar = () => {
   return (
     <nav className="p-3 bg-black dark:bg-black border-bottom-blue-solid">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
-        <a href="#" className="flex items-center">
+        <a href="/main" className="flex items-center">
           <img
             src={logo}
             className="rounded-full mr-3 h-28 lg:h-18 border-2  border-solid border-white"
