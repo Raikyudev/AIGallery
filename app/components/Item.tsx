@@ -1,7 +1,6 @@
 import {useState} from 'react';
 export const Item = (props:{image:string, price:number}) => {
     const [isShown, setIsShown] = useState(false);
-    var amount = 0;
     const displayMenu = () => {
         setIsShown(current => !current);
     };

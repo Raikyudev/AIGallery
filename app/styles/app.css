@@ -714,6 +714,10 @@ html {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.grid-cols-1{
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
 .flex-col{
   flex-direction: column;
 }
@@ -736,6 +740,10 @@ html {
 
 .gap-2{
   gap: 0.5rem;
+}
+
+.gap-12{
+  gap: 3rem;
 }
 
 .overflow-hidden{
@@ -954,6 +962,10 @@ html {
 
   .md\:w-full{
     width: 100%;
+  }
+
+  .md\:grid-cols-2{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .md\:flex-row{
