@@ -4,8 +4,8 @@ import { useState } from "react";
 export const Navbar = () => {
   const [isTriggered, setIsTriggered] = useState(true);
   return (
-    <nav className="p-3 bg-black dark:bg-black border-bottom-blue-solid">
-      <div className="container flex flex-wrap justify-between items-center mx-auto">
+    <nav className="p-3 bg-black dark:bg-black border-b border-0 border-solid border-white">
+      <div className="container flex flex-wrap justify-between items-center mx-auto ">
         <a href="/main" className="flex items-center">
           <img
             src={logo}
