@@ -1,22 +1,26 @@
 import logo from "../assets/A.I._GALLERY.png";
-
+import { useState } from "react";
 
 export const Navbar = () => {
+  const [isTriggered, setIsTriggered] = useState(true);
   return (
     <nav className="p-3 bg-black dark:bg-black border-bottom-blue-solid">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <a href="/main" className="flex items-center">
           <img
             src={logo}
-            className="rounded-full mr-3 h-28 lg:h-18 border-2  border-solid border-white"
+            className={`${
+              isTriggered ? "visible" : "hidden"
+            }    rounded-full mr-3 h-28 lg:h-18 border-2  border-solid border-white`}
             alt="AI Gallery Logo"
           />
         </a>
         <button
-          data-collapse-toggle="navbar-solid-bg"
+          onClick={() => setIsTriggered(!isTriggered)}
+          data-collapse-toggle="navbar-default"
           type="button"
-          className="inline-flex justify-center items-center ml-3 text-white rounded-lg md:hidden hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:text-white dark:hover:text-white dark:focus:ring-gray-500"
-          aria-controls="navbar-solid-bg"
+          className="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden  focus:outline-none focus:ring-2  text-gray-400 hover:bg-black focus:ring-gray-600 md-only"
+          aria-controls="navbar-default"
           aria-expanded="false"
         >
           <span className="sr-only">Open main menu</span>
@@ -34,12 +38,25 @@ export const Navbar = () => {
             ></path>
           </svg>
         </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-          <ul className="flex flex-col mt-4 bg-gray-50 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+        <div
+          className={`${
+            isTriggered ? "hidden" : "visible"
+          } w-full md:block md:w-auto`}
+          id="navbar-default "
+        >
+          <ul className="flex flex-col p-4 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium text-white">
+            <li>
+              <a
+                href="/main"
+                className=" block py-2 pr-4 pl-3 text-white rounded hover:bg-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-black dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                Store
+              </a>
+            </li>
             <li>
               <a
                 href="#"
-                className=" text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className=" block py-2 pr-4 pl-3 text-white rounded hover:bg-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-black dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Our Story
               </a>
@@ -47,7 +64,7 @@ export const Navbar = () => {
             <li>
               <a
                 href="#"
-                className="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-black dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Contact Us
               </a>
@@ -55,7 +72,7 @@ export const Navbar = () => {
             <li>
               <a
                 href="#"
-                className="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-black dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Sign In
               </a>
@@ -63,7 +80,7 @@ export const Navbar = () => {
             <li>
               <a
                 href="#"
-                className="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-black dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Basket
               </a>
