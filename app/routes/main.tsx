@@ -3,14 +3,26 @@ import { Footer } from "../components/Footer";
 import { Item } from "../components/Item";
 export default function Main() {
     const componentArray = [
-        <Item key="key-1" image="900px-Instagram_icon.png" price={0}/>,
-        <Item key="key-2" image="900px-Instagram_icon.png" price={0}/>
+        <Item key="key-1" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
+        <Item key="key-2" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
+        <Item key="key-3" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
+        <Item key="key-4" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
+        <Item key="key-5" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
+        <Item key="key-6" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
+        <Item key="key-7" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
+        <Item key="key-8" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
+        <Item key="key-9" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
+        <Item key="key-10" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
+        <Item key="key-11" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
+        <Item key="key-12" image="900px-Instagram_icon.png" price={0} artist="Guy"/>,
     ];
     return(
-        <div>
+        <div className="">
             <Navbar />
-            <main className="grid gap-12 grid-cols-1 md:grid-cols-2">
-                {componentArray}
+            <main className="flex flex-col items-center mt-20">
+                <div className="grid gap-36 grid-cols-1 grid-flow-row md:grid-cols-2 md:auto-cols-min lg:w-9/12 xl:w-6/12">
+                    {componentArray}
+                </div>
             </main>
             <Footer />
             

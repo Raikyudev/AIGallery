@@ -8,7 +8,7 @@ import { Link } from "@remix-run/react";
 
 export default function Index() {
   return (
-    <div>
+    <div className="h-screen">
       <Navbar />
       <img
         src={background}
