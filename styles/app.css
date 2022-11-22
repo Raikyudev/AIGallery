@@ -8,10 +8,16 @@
   html {
     font-family: "Raleway", sans-serif;
   }
+  
 }
 @layer components {
   .unhighlighted-link {
     -webkit-tap-highlight-color: transparent;
   }
+}
+input[type="radio"]:checked + div {
+  @apply bg-black;
+  @apply text-white;
+  @apply border-white;
 }
 

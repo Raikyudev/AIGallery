@@ -20,7 +20,7 @@ export default function Main() {
         <div className="">
             <Navbar />
             <main className="flex flex-col items-center mt-20">
-                <div className="grid gap-36 grid-cols-1 grid-flow-row md:grid-cols-2 md:auto-cols-min lg:w-9/12 xl:w-6/12">
+                <div className="grid gap-x-64 gap-y-32 grid-cols-1 grid-flow-row md:grid-cols-2 place-items-center">
                     {componentArray}
                 </div>
             </main>
