@@ -8,15 +8,15 @@ import { Link } from "@remix-run/react";
 
 export default function Index() {
   return (
-    <div className="h-screen">
+    <div className="h-screen bg-black overflow-hidden">
       <Navbar />
       <img
         src={background}
-        className=" w-full  z-0 absolute  overflow-hidden blur-sm"
+        className="w-full  z-0 absolute blur-sm"
         alt="background"
       />
 
-      <div className=" hidden:sm relative items-center justify-center  grid md:grid-cols-3 gap-2  mt-32 md:mt-56 ml-2 sm:ml-6 xl:ml-32 blur-sm xl:mt-96">
+      <div className=" relative items-center justify-center  grid md:grid-cols-3 gap-2  mt-32 md:mt-56 ml-2 sm:ml-6 xl:ml-32 blur-sm xl:mt-96">
         <div className="col-span-1 ">
           <img
             src={photo3}
@@ -39,7 +39,7 @@ export default function Index() {
           />
         </div>
       </div>
-      <div className="font-raleway, font-bold absolute z-10 text-white text-4xl md:text-6xl w-96 md:w-full text-center -mt-20 drop-shadow-lg ">
+      <div className="font-raleway, font-bold absolute z-10 text-white text-4xl text-3xl sm:w-60 md:text-6xl  md:w-full text-center -mt-20 drop-shadow-lg text-center  ">
         The art of the future. Made by machines.
       </div>
       <div className="flex flex-col items-center justify-center">
