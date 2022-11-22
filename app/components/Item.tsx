@@ -26,7 +26,7 @@ export const Item = (props:{image:string, price:number, artist:string}) => {
                         </label>
                         <label htmlFor="M" className="">
                         <input className="hidden peer" type="radio" id="M" value="M" name="size"/>
-                            <div className="border-black border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:first:border-white">
+                            <div className="border-black border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
                                 <p className="font-bold border-b-2 border-black w-9 mb-1">M</p>
                                 <p className="text-xs font-bold">12" x 18"</p>
                                     
@@ -34,14 +34,14 @@ export const Item = (props:{image:string, price:number, artist:string}) => {
                         </label>
                         <label htmlFor="L" className="">
                         <input className="hidden peer" type="radio" id="L" value="L" name="size"/>
-                            <div className="border-black border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:first:border-white">
+                            <div className="border-black border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
                                 <p className="font-bold border-b-2 border-black w-9 mb-1">L</p>
                                 <p className="text-xs font-bold">16" x 24"</p>
                             </div>
                         </label>
-                        <input className="hidden peer" type="radio" id="XL" value="XL" name="size"/>
                         <label htmlFor="XL" className="">
-                            <div className="border-black border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:first:border-white">
+                            <input className="hidden peer" type="radio" id="XL" value="XL" name="size"/>
+                            <div className="border-black border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
                                 <p className="font-bold border-b-2 border-black w-9 mb-1">XL</p>
                                 <p className="text-xs font-bold">20" x 30"</p>
                             </div>
