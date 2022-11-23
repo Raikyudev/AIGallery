@@ -40,7 +40,7 @@ export default function Index() {
         </div>
       </div>
       <div className="font-raleway, font-bold absolute z-10 text-white text-4xl text-3xl sm:w-60 md:text-6xl  md:w-full text-center -mt-20 drop-shadow-lg text-center  ">
-        The art of the future. Made by machines.
+        The art of the future. Made by the future.
       </div>
       <div className="flex flex-col items-center justify-center">
         <button className=" font-raleway,font-bold text-center rounded-lg  bg-white p-2 md:p-4 cl:p-6 absolute ml-auto mr-auto z-10 mt-32 sm:mt-80 xl:mt-96 border-solid border-black border-2">

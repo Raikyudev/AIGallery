@@ -7,75 +7,75 @@ export default function Main() {
   const componentArray = [
     <Item
       key="key-1"
-      image="900px-Instagram_icon.png"
-      price={0}
-      artist="Guy"
+      image="mountain_guardian.jpg"
+      price={199.99}
+      art_name="Mountain Gurardian"
     />,
     <Item
       key="key-2"
-      image="900px-Instagram_icon.png"
+      image="mountain_guardian.jpg"
       price={0}
-      artist="Guy"
+      art_name="Test1"
     />,
     <Item
       key="key-3"
-      image="900px-Instagram_icon.png"
+      image="mountain_guardian.jpg"
       price={0}
-      artist="Guy"
+      art_name="Test1"
     />,
     <Item
       key="key-4"
-      image="900px-Instagram_icon.png"
+      image="mountain_guardian.jpg"
       price={0}
-      artist="Guy"
+      art_name="Test1"
     />,
     <Item
       key="key-5"
-      image="900px-Instagram_icon.png"
+      image="mountain_guardian.jpg"
       price={0}
-      artist="Guy"
+      art_name="Test1"
     />,
     <Item
       key="key-6"
-      image="900px-Instagram_icon.png"
+      image="mountain_guardian.jpg"
       price={0}
-      artist="Guy"
+      art_name="Test1"
     />,
     <Item
       key="key-7"
-      image="900px-Instagram_icon.png"
+      image="mountain_guardian.jpg"
       price={0}
-      artist="Guy"
+      art_name="Test1"
     />,
     <Item
       key="key-8"
-      image="900px-Instagram_icon.png"
+      image="mountain_guardian.jpg"
       price={0}
-      artist="Guy"
+      art_name="Test1"
     />,
     <Item
       key="key-9"
-      image="900px-Instagram_icon.png"
+      image="mountain_guardian.jpg"
       price={0}
-      artist="Guy"
+      art_name="Test1"
     />,
     <Item
       key="key-10"
-      image="900px-Instagram_icon.png"
+      image="mountain_guardian.jpg"
       price={0}
-      artist="Guy"
+      art_name="Test1"
     />,
     <Item
       key="key-11"
-      image="900px-Instagram_icon.png"
+      image="mountain_guardian.jpg"
       price={0}
-      artist="Guy"
+      art_name="Test1"
     />,
     <Item
       key="key-12"
-      image="900px-Instagram_icon.png"
+      image="mountain_guardian.jpg"
       price={0}
-      artist="Guy"
+      art_name="Test1"
     />,
   ];
   return (
