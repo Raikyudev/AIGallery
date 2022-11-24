@@ -1295,11 +1295,6 @@ html {
     line-height: 1.75rem;
   }
 
-  .md\:text-3xl{
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
-
   .md\:font-medium{
     font-weight: 500;
   }

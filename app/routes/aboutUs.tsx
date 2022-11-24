@@ -3,6 +3,7 @@ import { Footer } from "../components/Footer";
 import bg from "../assets/AI_BG (2).png";
 import jasonpfp from "../assets/giphy (1).gif";
 import sebpfp from "../assets/sebpfp.jpg";
+import ab from "../assets/ab.png";
 
 const aboutUs = () => {
   return (
@@ -57,12 +58,12 @@ const aboutUs = () => {
         </div>
         <div className="flex flex-col items-center justify-center mx-8">
           <img
-            src={bg}
+            src={ab}
             alt="
                 AI"
             className="lg:w-64 lg:h-64 w-32 h-32 border-solid border-black border-4 "
           />
-          <p className="text-xl font-raleway, p-4 font-bold mt-5">Name</p>
+          <p className="text-xl font-raleway, p-4 font-bold mt-5">Avjit Basra</p>
         </div>
         <div className="flex flex-col items-center justify-center mx-8">
           <img
