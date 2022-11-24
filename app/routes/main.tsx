@@ -14,7 +14,7 @@ export default function Main() {
     <Item
       key="key-2"
       image="silent_nature.jpg"
-      price="179.99"
+      price="169.99"
       art_name="Silent Nature"
     />,
     <Item
@@ -76,6 +76,18 @@ export default function Main() {
       image="hole.jpg"
       price="250.00"
       art_name="Hole"
+    />,
+    <Item
+      key="key-13"
+      image="burning_harbor.jpg"
+      price="330.00"
+      art_name="Burning Harbor"
+    />,
+    <Item
+      key="key-14"
+      image="ai_robot.jpg"
+      price="349.99"
+      art_name="A.I. Robot"
     />,
   ];
   return (
