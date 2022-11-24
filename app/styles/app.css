@@ -687,6 +687,10 @@ html {
   margin-bottom: 0.5rem;
 }
 
+.mt-12{
+  margin-top: 3rem;
+}
+
 .block{
   display: block;
 }

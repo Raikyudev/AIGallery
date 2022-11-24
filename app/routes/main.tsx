@@ -86,7 +86,9 @@ export default function Main() {
           {componentArray}
         </div>
       </main>
-      <Footer />
+      <div className="mt-12">
+        <Footer />
+      </div>
     </div>
   );
 }
