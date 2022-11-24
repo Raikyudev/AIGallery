@@ -1,5 +1,5 @@
-import facebook from "../assets/Facebook_Logo_(2019).png";
-import instagram from "../assets/900px-Instagram_icon.png";
+import facebook from "../assets/facebook-xxl.png";
+import instagram from "../assets/instagram.png";
 
 export const Footer = () => {
   return (
