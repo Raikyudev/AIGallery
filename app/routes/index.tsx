@@ -10,7 +10,7 @@ export default function Index() {
   return (
     <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
       <Navbar />
-      <div className="font-raleway, font-bold  z-10 text-white  text-3xl sm:w-60 md:text-6xl  md:w-full text-center mt-32 md:mt-44 drop-shadow-lg text-center mx-4 ">
+      <div className="font-raleway, font-bold  z-10 text-white  text-3xl sm:w-60 md:text-6xl  md:w-full text-center mt-32 md:mt-44 drop-shadow-lg text-center mx-6 ">
         The art of the future. Made by the future.
       </div>
       <div className="font-raleway, flex flex-col items-center justify-center">
@@ -24,7 +24,7 @@ export default function Index() {
             src="assets/angel_of_death.jpg"
             className=" w-60  md:w-80 md:ml-4 mb-4 mt-2 rounded-lg shadow-2xl hover:transform hover:scale-110 transition duration-500 ease-in-out"
           />
-          <div className="font-raleway, font-bold text-white text-md md:text-3xl text-center md:text-left mt-4 w-60 md:w-1/3 justify-center md:ml-24 font-light ">
+          <div className="font-raleway, font-bold text-white text-md md:text-xl lg:text-3xl md:text-3xl text-center md:text-left mt-4 w-60 md:w-1/3 justify-center md:ml-24 font-light ">
             A.I GALLERY is a platform to demonstrate the power and beauty of A.I
             generated art. Beautifully curated to create images that are both
             visually stunning and thought provoking. Beyond the constraints of
@@ -34,7 +34,7 @@ export default function Index() {
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-center items-center mb-20 md:mb-40 ">
-        <div className="font-raleway, font-bold text-white text-md md:text-3xl text-center md:text-left mt-4 w-60 md:w-1/3 justify-center md:mr-24 font-light order-2 md:order-1 ">
+        <div className="font-raleway, font-bold text-white text-md md:text-xl lg:text-3xl text-center md:text-left mt-4 w-60 md:w-1/3 justify-center md:mr-24 font-light order-2 md:order-1 ">
           Enter the new realm of art. With immaculate detail and a unique style,
           we offer a new way to experience art. Unparalleled in quality, our art
           is a new frontier in the world of art. With prints available in a
