@@ -86,7 +86,7 @@ export default function Main() {
     />,
   ];
   return (
-    <div className="">
+    <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
       <Navbar />
       <main className="flex flex-col items-center mt-20 mx-28">
         <div className="grid gap-x-64  gap-y-32 grid-cols-1 grid-flow-row md:grid-cols-2 place-items-center ">

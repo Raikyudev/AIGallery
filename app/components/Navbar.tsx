@@ -1,4 +1,4 @@
-import logo from "../assets/logo2.png";
+import logo from "../assets/logo3.png";
 import { useState } from "react";
 
 export const Navbar = () => {
@@ -11,7 +11,7 @@ export const Navbar = () => {
             src={logo}
             className={`${
               isTriggered ? "visible" : "hidden"
-            }    rounded-full mr-3 h-28 lg:h-18 border-2  border-solid border-white`}
+            }    rounded-full mr-3 h-16 md:h-28 border-2  border-solid border-white`}
             alt="AI Gallery Logo"
           />
         </a>

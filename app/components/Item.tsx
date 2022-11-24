@@ -16,7 +16,7 @@ export const Item = (props: {
     <div
       onMouseLeave={closeMenu}
       className={`${
-        isShown && "border-black border-2 shadow-inner"
+        isShown && "border-white border-2 shadow-inner"
       } flex flex-col items-center w-64 md:w-96 pt-2 pb-2  transition ease-in-out hover:scale-105 duration-1000`}
     >
       <img
@@ -27,11 +27,11 @@ export const Item = (props: {
       {isShown && (
         <div>
           <div className="ml-2 flex flex-col items-start w-60 md:w-72 mb-1">
-            <p className="font-bold">{props.art_name}</p>
-            <p className="font-bold">Price: £{props.price}</p>
+            <p className="font-bold text-white">{props.art_name}</p>
+            <p className="font-bold text-white">Price: £{props.price}</p>
           </div>
           <div className="flex gap-2 mb-4 h-20 items-center ml-2">
-            <p className="font-bold">Size: </p>
+            <p className="font-bold text-white">Size: </p>
             <label htmlFor="S" className="">
               <input
                 className="hidden peer"
@@ -42,9 +42,11 @@ export const Item = (props: {
                 required
               />
 
-              <div className="border-black border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
-                <p className="font-bold border-b-2 border-black w-9 mb-1">S</p>
-                <p className="text-xs font-bold">8" x 12"</p>
+              <div className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
+                <p className="font-bold border-b-2 border-white w-9 text-white mb-1">
+                  S
+                </p>
+                <p className="text-xs text-white font-bold">8" x 12"</p>
               </div>
             </label>
             <label htmlFor="M" className="">
@@ -55,9 +57,11 @@ export const Item = (props: {
                 value="M"
                 name="size"
               />
-              <div className="border-black border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
-                <p className="font-bold border-b-2 border-black w-9 mb-1">M</p>
-                <p className="text-xs font-bold">12" x 18"</p>
+              <div className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
+                <p className="font-bold border-b-2 border-white w-9 mb-1 text-white">
+                  M
+                </p>
+                <p className="text-xs font-bold text-white">12" x 18"</p>
               </div>
             </label>
             <label htmlFor="L" className="">
@@ -68,9 +72,11 @@ export const Item = (props: {
                 value="L"
                 name="size"
               />
-              <div className="border-black border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
-                <p className="font-bold border-b-2 border-black w-9 mb-1">L</p>
-                <p className="text-xs font-bold">16" x 24"</p>
+              <div className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
+                <p className="font-bold border-b-2 border-white w-9 mb-1 text-white">
+                  L
+                </p>
+                <p className="text-xs font-bold text-white">16" x 24"</p>
               </div>
             </label>
             <label htmlFor="XL" className="">
@@ -81,13 +87,15 @@ export const Item = (props: {
                 value="XL"
                 name="size"
               />
-              <div className="border-black border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
-                <p className="font-bold border-b-2 border-black w-9 mb-1">XL</p>
-                <p className="text-xs font-bold">20" x 30"</p>
+              <div className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
+                <p className="font-bold border-b-2 border-white text-white w-9 mb-1">
+                  XL
+                </p>
+                <p className="text-xs font-bold text-white">20" x 30"</p>
               </div>
             </label>
           </div>
-          <button className="font-bold bg-black text-white px-10 w-60 h-10 md:w-72 md:h-10 ml-1 md:ml-2">
+          <button className="font-bold bg-white text-black px-10 w-60 h-10 md:w-72 md:h-10 ml-1 md:ml-2">
             Add to basket
           </button>
         </div>
