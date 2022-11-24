@@ -1,6 +1,7 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import bg from "../assets/AI_BG (2).png";
+import logo3 from "../assets/logo3.png";
 import jasonpfp from "../assets/giphy (1).gif";
 import sebpfp from "../assets/sebpfp.jpg";
 import ab from "../assets/ab.png";
@@ -26,7 +27,7 @@ const aboutUs = () => {
         </div>
         <div className="flex flex-row items-center justify-center mt-20 ml-60 items-end">
           <img
-            src={bg}
+            src={logo3}
             alt="AI"
             className="w-96 border-solid border-black border-4 "
           />
