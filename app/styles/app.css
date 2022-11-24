@@ -615,6 +615,21 @@ html {
   margin-right: 0.5rem;
 }
 
+.mx-10{
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.mx-20{
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.mx-28{
+  margin-left: 7rem;
+  margin-right: 7rem;
+}
+
 .mb-4{
   margin-bottom: 1rem;
 }
@@ -667,6 +682,10 @@ html {
   margin-top: 5rem;
 }
 
+.mt-12{
+  margin-top: 3rem;
+}
+
 .mt-5{
   margin-top: 1.25rem;
 }
@@ -685,10 +704,6 @@ html {
 
 .mb-2{
   margin-bottom: 0.5rem;
-}
-
-.mt-12{
-  margin-top: 3rem;
 }
 
 .block{
