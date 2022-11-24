@@ -1,7 +1,7 @@
 import { useState } from "react";
 export const Item = (props: {
   image: string;
-  price: number;
+  price: string;
   art_name: string;
 }) => {
   const [isShown, setIsShown] = useState(false);
@@ -28,7 +28,7 @@ export const Item = (props: {
         <div>
           <div className="ml-2 flex flex-col items-start w-60 md:w-72 mb-1">
             <p className="font-bold">{props.art_name}</p>
-            <p className="font-bold">Price £{props.price}</p>
+            <p className="font-bold">Price: £{props.price}</p>
           </div>
           <div className="flex gap-2 mb-4 h-20 items-center ml-2">
             <p className="font-bold">Size: </p>
