@@ -93,7 +93,7 @@ export default function Main() {
   return (
     <div className="">
       <Navbar />
-      <main className="flex flex-col items-center mt-20 ">
+      <main className="flex flex-col items-center mt-20 mx-28">
         <div className="grid gap-x-64  gap-y-32 grid-cols-1 grid-flow-row md:grid-cols-2 place-items-center ">
           {componentArray}
         </div>
