@@ -71,12 +71,7 @@ export default function Main() {
       price="80.00"
       art_name="80s London"
     />,
-    <Item
-      key="key-12"
-      image="hole.jpg"
-      price="250.00"
-      art_name="Hole"
-    />,
+    <Item key="key-12" image="hole.jpg" price="250.00" art_name="Hole" />,
     <Item
       key="key-13"
       image="burning_harbor.jpg"

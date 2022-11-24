@@ -16,12 +16,12 @@ export const Item = (props: {
     <div
       onMouseLeave={closeMenu}
       className={`${
-        isShown && "border-black border-2 "
+        isShown && "border-black border-2 shadow-inner"
       } flex flex-col items-center w-64 md:w-96 pt-2 pb-2  transition ease-in-out hover:scale-105 duration-1000`}
     >
       <img
         src={"/assets/" + props.image}
-        className="w-60 h-60 md:w-80 md:h-80 mb-4 mt-2"
+        className="w-60 h-60 md:w-80 md:h-80 mb-4 mt-2 rounded-lg shadow-2xl"
         onMouseEnter={displayMenu}
       />
       {isShown && (

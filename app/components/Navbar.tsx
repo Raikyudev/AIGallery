@@ -1,4 +1,4 @@
-import logo from "../assets/A.I._GALLERY.png";
+import logo from "../assets/logo2.png";
 import { useState } from "react";
 
 export const Navbar = () => {
