@@ -25,7 +25,7 @@ export default function Index() {
             className=" w-60  md:w-80 md:ml-4 mb-4 mt-2 rounded-lg shadow-2xl hover:transform hover:scale-110 transition duration-500 ease-in-out"
           />
           <div className="font-raleway, font-bold text-white  text-md md:text-xl lg:text-3xl   text-center md:text-left mt-4 w-60 md:w-1/3 justify-center md:ml-24 font-light ">
-            A.I GALLERY is a platform to demonstrate the power and beauty of A.I
+            A.I Gallery is a platform to demonstrate the power and beauty of A.I
             generated art. Beautifully curated to create images that are both
             visually stunning and thought provoking. Beyond the constraints of
             human creativity, A.I Gallery is a place to explore the art of the
