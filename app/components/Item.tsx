@@ -16,7 +16,7 @@ export const Item = (props:{image:string, price:number, artist:string}) => {
                     <div className="flex gap-2 mb-4 h-20 items-center ml-2">
                         <p className="font-bold">Size: </p>
                         <label htmlFor="S" className="">
-                        <input className="hidden peer" type="radio" id="S" name="size" value="S" required/>
+                        <input className="hidden peer" type="radio" id="S" name="size" value="S" />
                         
                             <div className="border-black border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
                                 <p className="font-bold border-b-2 border-black w-9 mb-1">S</p>
