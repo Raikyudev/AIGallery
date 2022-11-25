@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useCart } from "~/hooks/useCart";
+
 export const Item = (props: {
   image: string;
   price: string;
@@ -10,6 +12,12 @@ export const Item = (props: {
   };
   const closeMenu = () => {
     setIsShown(false);
+  };
+
+  const { addToCart } = useCart();
+  const handleClick = () => {
+    addToCart(props.art_name);
+    console.log(props.art_name);
   };
 
   return (
@@ -95,7 +103,10 @@ export const Item = (props: {
               </div>
             </label>
           </div>
-          <button className="font-bold bg-white text-black px-10 w-60 h-10 md:w-72 md:h-10 ml-1 md:ml-2">
+          <button
+            className="font-bold bg-white text-black px-10 w-60 h-10 md:w-72 md:h-10 ml-1 md:ml-2"
+            onClick={handleClick}
+          >
             Add to basket
           </button>
         </div>
