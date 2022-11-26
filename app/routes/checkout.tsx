@@ -1,6 +1,10 @@
 import { useCart } from "~/hooks/useCart";
 import { Navbar } from "~/components/Navbar"
 import { Footer } from "~/components/Footer"
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { getSession, commitSession } from "~/utils/items-session";
+
 
 export default function Checkout() {
   const {cart} = useCart();
@@ -17,3 +21,4 @@ export default function Checkout() {
     </div>
   );
 }
+
