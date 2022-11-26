@@ -573,6 +573,10 @@ html {
   visibility: visible;
 }
 
+.fixed{
+  position: fixed;
+}
+
 .bottom-0{
   bottom: 0px;
 }
@@ -595,6 +599,10 @@ html {
 
 .order-1{
   order: 1;
+}
+
+.m-2{
+  margin: 0.5rem;
 }
 
 .mx-auto{
@@ -669,6 +677,14 @@ html {
   margin-top: 6rem;
 }
 
+.mb-8{
+  margin-bottom: 2rem;
+}
+
+.mb-2{
+  margin-bottom: 0.5rem;
+}
+
 .mr-2{
   margin-right: 0.5rem;
 }
@@ -697,12 +713,12 @@ html {
   margin-top: 0.75rem;
 }
 
-.mb-2{
-  margin-bottom: 0.5rem;
-}
-
 .block{
   display: block;
+}
+
+.inline{
+  display: inline;
 }
 
 .flex{
@@ -721,8 +737,8 @@ html {
   display: none;
 }
 
-.h-20{
-  height: 5rem;
+.h-12{
+  height: 3rem;
 }
 
 .h-10{
@@ -731,6 +747,10 @@ html {
 
 .h-60{
   height: 15rem;
+}
+
+.h-20{
+  height: 5rem;
 }
 
 .h-16{
@@ -747,6 +767,10 @@ html {
 
 .h-32{
   height: 8rem;
+}
+
+.h-8{
+  height: 2rem;
 }
 
 .w-full{
@@ -779,6 +803,14 @@ html {
 
 .w-32{
   width: 8rem;
+}
+
+.w-3\/4{
+  width: 75%;
+}
+
+.w-8{
+  width: 2rem;
 }
 
 .grid-flow-row{
@@ -975,6 +1007,10 @@ html {
   text-align: center;
 }
 
+.text-right{
+  text-align: right;
+}
+
 .text-lg{
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -1032,6 +1068,15 @@ html {
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
+.text-blue-600{
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.underline{
+  text-decoration-line: underline;
+}
+
 .shadow-inner{
   --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
@@ -1069,6 +1114,10 @@ html {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.visited\:text-purple-600:visited{
+  color: rgb(147 51 234 );
+}
+
 .hover\:scale-105:hover{
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -1093,6 +1142,11 @@ html {
 .hover\:bg-gray-100:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.hover\:text-blue-800:hover{
+  --tw-text-opacity: 1;
+  color: rgb(30 64 175 / var(--tw-text-opacity));
 }
 
 .focus\:outline-none:focus{
@@ -1200,10 +1254,6 @@ html {
 
   .md\:hidden{
     display: none;
-  }
-
-  .md\:h-12{
-    height: 3rem;
   }
 
   .md\:h-80{
@@ -1321,12 +1371,50 @@ html {
 }
 
 @media (min-width: 1024px){
+  .lg\:mt-8{
+    margin-top: 2rem;
+  }
+
   .lg\:h-64{
     height: 16rem;
   }
 
+  .lg\:h-16{
+    height: 4rem;
+  }
+
   .lg\:w-64{
     width: 16rem;
+  }
+
+  .lg\:w-1\/2{
+    width: 50%;
+  }
+
+  .lg\:w-16{
+    width: 4rem;
+  }
+
+  .lg\:p-10{
+    padding: 2.5rem;
+  }
+
+  .lg\:px-10{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .lg\:pb-4{
+    padding-bottom: 1rem;
+  }
+
+  .lg\:pt-10{
+    padding-top: 2.5rem;
+  }
+
+  .lg\:text-5xl{
+    font-size: 3rem;
+    line-height: 1;
   }
 
   .lg\:text-3xl{
