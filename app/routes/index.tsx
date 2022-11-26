@@ -1,9 +1,5 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import background from "../assets/background.webp";
-import photo1 from "../assets/peakpx.jpg";
-import photo2 from ".../public/assets/ghost_town.jpg";
-import photo3 from "../assets/wallpaperflare.com_wallpaper.jpg";
 import { Link } from "@remix-run/react";
 
 export default function Index() {
@@ -51,4 +47,3 @@ export default function Index() {
     </div>
   );
 }
-
