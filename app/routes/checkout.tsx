@@ -7,6 +7,8 @@ export default function Checkout() {
   const clicked = () => {
     console.log(cart);
   }
+
+  
   return (
     <div className="" >
       <Navbar />
