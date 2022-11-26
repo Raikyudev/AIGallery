@@ -14,10 +14,11 @@ export const Item = (props: {
     setIsShown(false);
   };
 
-  const { addToCart } = useCart();
+  const { addToCart, cart } = useCart();
   const handleClick = () => {
     addToCart(props.art_name);
     console.log(props.art_name);
+    console.log(cart);
   };
 
   return (

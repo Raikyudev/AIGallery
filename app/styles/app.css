@@ -673,6 +673,10 @@ html {
   margin-bottom: 5rem;
 }
 
+.mt-8{
+  margin-top: 2rem;
+}
+
 .mt-24{
   margin-top: 6rem;
 }
@@ -711,10 +715,6 @@ html {
 
 .mt-3{
   margin-top: 0.75rem;
-}
-
-.mt-8{
-  margin-top: 2rem;
 }
 
 .block{
