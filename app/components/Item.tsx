@@ -5,7 +5,7 @@ export const Item = (props: {
   image: string;
   price: string;
   art_name: string;
-}) => {
+} ) => {
   const [isShown, setIsShown] = useState(false);
   const displayMenu = () => {
     setIsShown((current) => !current);
@@ -14,11 +14,12 @@ export const Item = (props: {
     setIsShown(false);
   };
 
-  const { addToCart, cart } = useCart();
+  const { cart, addToCart } = useCart();
   const handleClick = () => {
     addToCart(props.art_name);
     console.log(props.art_name);
     console.log(cart);
+    console.log(addToCart);
   };
 
   return (
