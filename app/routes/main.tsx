@@ -5,21 +5,19 @@ import { useState } from "react";
 import { useCart } from "~/hooks/useCart";
 
 export default function Main() {
-  const { addToCart} = useCart();
+  const { addToCart } = useCart();
   const componentArray = [
     <Item
       key="key-1"
       image="mountain_guardian.jpg"
       price="199.99"
       art_name="Mountain Gurardian"
-      
     />,
     <Item
       key="key-2"
       image="silent_nature.jpg"
       price="169.99"
       art_name="Silent Nature"
-
     />,
     <Item
       key="key-3"
