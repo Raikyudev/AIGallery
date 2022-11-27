@@ -1,0 +1,60 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\ayush\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add zod
+
+PATH: 
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\ayush\AppData\Local\Microsoft\WindowsApps;;C:\Users\ayush\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ayush\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  19.0.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'C:\Users\ayush\remix-jokes\remix-app\node_modules\esbuild-windows-64\esbuild.exe'
+
+npm manifest: 
+  {
+    "private": true,
+    "sideEffects": false,
+    "scripts": {
+      "build": "remix build",
+      "dev": "remix dev",
+      "start": "remix-serve build"
+    },
+    "prisma": {
+      "seed": "node --require esbuild-register prisma/seed.ts"
+    },
+    "dependencies": {
+      "@prisma/client": "^4.6.1",
+      "@remix-run/node": "^1.7.5",
+      "@remix-run/react": "^1.7.5",
+      "@remix-run/serve": "^1.7.5",
+      "isbot": "^3.5.4",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "yarn": "^1.22.19"
+    },
+    "devDependencies": {
+      "@remix-run/dev": "^1.7.5",
+      "@remix-run/eslint-config": "^1.7.5",
+      "@types/react": "^18.0.15",
+      "@types/react-dom": "^18.0.6",
+      "esbuild-register": "^3.4.1",
+      "eslint": "^8.23.1",
+      "prisma": "^4.6.1",
+      "typescript": "^4.7.4"
+    },
+    "engines": {
+      "node": ">=14"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
