@@ -2,7 +2,7 @@ import { Navbar } from "~/components/Navbar";
 import bg from "~/assets/mountain_guardian.jpg";
 import { Footer } from "~/components/Footer";
 
-}
+
 const Basket = () => {
   return (
     <div>
