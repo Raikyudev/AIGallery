@@ -3,8 +3,21 @@ import { Footer } from "../components/Footer";
 import { Item } from "../components/Item";
 import { useState } from "react";
 import { useCart } from "~/hooks/useCart";
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { getSession, commitSession } from "~/utils/items-session";
+import { PrismaClient, Customers} from "@prisma/client";
+
+export const loader = async ({ request }: { request: Request }) => {
+  const prisma = new PrismaClient();
+  const allUsers = await prisma.customers.findMany();
+  console.log("All customers",allUsers);
+  await prisma.$disconnect();
+  return allUsers;
+}
 
 export default function Main() {
+  const customers = useLoaderData();
   const { addToCart} = useCart();
   const componentArray = [
     <Item
@@ -96,6 +109,13 @@ export default function Main() {
         <div className="grid gap-x-64  gap-y-32 grid-cols-1 grid-flow-row md:grid-cols-2 place-items-center ">
           {componentArray}
         </div>
+        {customers.map((customer: Customers) => (
+          <div className="text-white">
+          <div key={customer.customerID}>{customer.customerID}</div>
+          <div key={customer.customerFirstName}>{customer.customerFirstName}</div>
+          <div key={customer.customerLastName}>{customer.customerLastName}</div>
+          </div>
+        ))}
       </main>
       <div className="mt-12">
         <Footer />

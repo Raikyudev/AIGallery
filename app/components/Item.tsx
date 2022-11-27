@@ -1,11 +1,37 @@
+import { ActionFunction, json, redirect } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import { useCart } from "~/hooks/useCart";
+import { getSession, commitSession, destroySession } from "~/utils/items-session";
 
+export const loader = async ({ request }: { request: Request }) => {
+  // Read session from cookie
+  const session = await getSession(request.headers.get("Cookie"));
+
+  // Increment by 1 if exists, otherwise set to 1
+  const basket: string[] = session.get("basket") || [];
+
+  // Create new cookie string
+  session.set("basket", basket);
+  const cookie = await commitSession(session);
+
+  // Set new cookie in headers
+  return json(
+    { basket },
+    {
+      headers: {
+        "Set-Cookie": cookie,
+      },
+    }
+  );
+}
 export const Item = (props: {
   image: string;
   price: string;
   art_name: string;
 } ) => {
+
+  const session = useLoaderData();
   const [isShown, setIsShown] = useState(false);
   const displayMenu = () => {
     setIsShown((current) => !current);
@@ -16,10 +42,11 @@ export const Item = (props: {
 
   const { cart, addToCart } = useCart();
   const handleClick = () => {
-    addToCart(props.art_name);
-    console.log(props.art_name);
-    console.log(cart);
-    console.log(addToCart);
+
+    const basket = session.basket;
+    basket[basket.length] = props.art_name;
+
+    console.log(basket)
   };
 
   return (

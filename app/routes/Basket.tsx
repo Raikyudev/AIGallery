@@ -7,7 +7,7 @@ export const loader = async ({ request }: { request: Request }) => {
   const session = await getSession(request.headers.get("Cookie"));
 
   // Increment by 1 if exists, otherwise set to 1
-  const basket: number[] = session.get("basket") || [];
+  const basket: string[] = session.get("basket") || [];
 
   // Create new cookie string
   session.set("basket", basket);
@@ -23,7 +23,10 @@ export const loader = async ({ request }: { request: Request }) => {
     }
   );
 }
+export const action = async ({ request }: { request: Request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
 
+}
 const Basket = () => {
   const data = useLoaderData();
   return <pre>{JSON.stringify(data, null, 2)}</pre>;

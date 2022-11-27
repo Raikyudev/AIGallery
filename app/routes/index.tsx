@@ -1,8 +1,11 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Link } from "@remix-run/react";
+import { PrismaClient } from '@prisma/client'
 
 export default function Index() {
+  
+
   return (
     <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black overflow-hidden">
       <Navbar />
