@@ -11,14 +11,19 @@ import { PrismaClient, Customers} from "@prisma/client";
 export const loader = async ({ request }: { request: Request }) => {
   const prisma = new PrismaClient();
   const allUsers = await prisma.customers.findMany();
+  const allOrders = await prisma.orderItems.findMany();
+  const allProducts = await prisma.products.findMany();
   console.log("All customers",allUsers);
   await prisma.$disconnect();
-  return allUsers;
+  console.log(typeof(allUsers));
+  return json({"users": allUsers, "orders":allOrders, "products":allProducts});
 }
 
 export default function Main() {
-  const customers = useLoaderData();
-  const { addToCart} = useCart();
+  const data = useLoaderData();
+  console.log("all data", data);
+  const users = data.users;
+  console.log("users", users);
   const componentArray = [
     <Item
       key="key-1"
@@ -107,13 +112,7 @@ export default function Main() {
         <div className="grid gap-x-64  gap-y-32 grid-cols-1 grid-flow-row md:grid-cols-2 place-items-center ">
           {componentArray}
         </div>
-        {customers.map((customer: Customers) => (
-          <div className="text-white">
-          <div key={customer.customerID}>{customer.customerID}</div>
-          <div key={customer.customerFirstName}>{customer.customerFirstName}</div>
-          <div key={customer.customerLastName}>{customer.customerLastName}</div>
-          </div>
-        ))}
+        
       </main>
       <div className="mt-12">
         <Footer />

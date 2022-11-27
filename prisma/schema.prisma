@@ -14,7 +14,6 @@ datasource db {
 model Products{
   productID Int @id @default(autoincrement())
   productName String @db.VarChar(50)  
-  productDescription String @db.VarChar(100)
   productPrice Float 
   productSize String @db.VarChar(20)
 
@@ -26,6 +25,7 @@ model Customers{
   customerFirstName String @db.VarChar(50)
   phoneNumber String @db.VarChar(20) 
   email String @db.VarChar(20)
+  password String @db.VarChar(300) @default("")
 
 }
 model Orders{
@@ -37,8 +37,8 @@ model Orders{
 
 model OrderItems{
   orderItemID Int @id @default(autoincrement())
-  orderID Int 
   productId Int
   quantity Float
   price Float
+  customerID Int @default(0)
 }

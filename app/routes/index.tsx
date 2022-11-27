@@ -9,7 +9,7 @@ export default function Index() {
   return (
     <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black overflow-hidden">
       <Navbar />
-      <div className="font-raleway, font-bold  z-10 text-white  text-3xl sm:w-60 md:text-6xl  md:w-full text-center mt-24 md:mt-44 drop-shadow-lg text-center mr-2 ">
+      <div className="font-raleway, font-bold  z-10 text-white  text-3xl sm:w-60 md:text-6xl  md:w-full  mt-24 md:mt-44 drop-shadow-lg text-center mr-2 ">
         The art of the future. Made by the future.
       </div>
       <div className="font-raleway, flex flex-col items-center justify-center">
