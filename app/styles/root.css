@@ -1,0 +1,27 @@
+body{
+    background-color: rgb(234, 242, 254);
+}
+#signup{
+ position: relative;
+ left: 100px;
+ border-color: black;
+ border-width: 1px;
+}
+#login{
+ position: relative;
+ left: 100px;
+ border-color: black;
+ border-width: 1px;
+}
+#userforms{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    
+}
+#customer{
+    display: flex;
+    flex-direction: column;
+}
+    
+    
