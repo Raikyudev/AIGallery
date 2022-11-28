@@ -22,12 +22,10 @@ export const loader = async ({ request }: { request: Request }) => {
 export default function Main() {
   const data = useLoaderData();
   const products = data.products;
-  let sizeTracker = 1;
   const componentArray: React.ReactElement[] =[];
   for(let i:number = 0; i<products.length; i+=4 ){
-    if(sizeTracker == 1){
       componentArray[i] = <Item key={i} image={products[i].productName + ".jpg"} priceS={products[i].productPrice} priceM={products[i+1].productPrice} priceL={products[i+2].productPrice} priceXl={products[i+3].productPrice} art_name={products.productName}  />
-    }
+  
   };
   console.log("array",componentArray)
   
