@@ -27,12 +27,17 @@ export const loader = async ({ request }: { request: Request }) => {
 }
 export const Item = (props: {
   image: string;
-  price: string;
+  priceS: number;
+  priceM: number;
+  priceL: number;
+  priceXl: number;
   art_name: string;
 } ) => {
 
   const session = useLoaderData();
   const [isShown, setIsShown] = useState(false);
+  const [currentPrice, changePrice] = useState(props.priceS);
+
   const displayMenu = () => {
     setIsShown((current) => !current);
   };
@@ -49,9 +54,11 @@ export const Item = (props: {
     console.log(basket)
   };
 
+
   return (
     <div
       onMouseLeave={closeMenu}
+      onMouseEnter={displayMenu}
       className={`${
         isShown && "border-white border-2 shadow-inner"
       } flex flex-col items-center w-64 md:w-96 pt-2 pb-2  transition ease-in-out hover:scale-105 duration-1000`}
@@ -59,13 +66,13 @@ export const Item = (props: {
       <img
         src={"/assets/" + props.image}
         className="w-60 h-60 md:w-80 md:h-80 mb-4 mt-2 rounded-lg shadow-2xl"
-        onMouseEnter={displayMenu}
+        
       />
       {isShown && (
         <div>
           <div className="ml-2 flex flex-col items-start w-60 md:w-72 mb-1">
             <p className="font-bold text-white">{props.art_name}</p>
-            <p className="font-bold text-white">Price: £{props.price}</p>
+            <p className="font-bold text-white">Price: £{currentPrice}</p>
           </div>
           <div className="flex gap-2 mb-4 h-20 items-center ml-2">
             <p className="font-bold text-white">Size: </p>
@@ -79,7 +86,7 @@ export const Item = (props: {
                 required
               />
 
-              <div className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
+              <div onClick={() => changePrice(props.priceS)} className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
                 <p className="font-bold border-b-2 border-white w-9 text-white mb-1">
                   S
                 </p>
@@ -94,7 +101,7 @@ export const Item = (props: {
                 value="M"
                 name="size"
               />
-              <div className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
+              <div id="m" onClick={() => changePrice(props.priceM)} className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
                 <p className="font-bold border-b-2 border-white w-9 mb-1 text-white">
                   M
                 </p>
@@ -109,7 +116,7 @@ export const Item = (props: {
                 value="L"
                 name="size"
               />
-              <div className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
+              <div id="l" onClick={() => changePrice(props.priceL)} className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
                 <p className="font-bold border-b-2 border-white w-9 mb-1 text-white">
                   L
                 </p>
@@ -124,7 +131,7 @@ export const Item = (props: {
                 value="XL"
                 name="size"
               />
-              <div className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
+              <div id="xl" onClick={() => changePrice(props.priceXl)} className="border-white border-2 w-10 h-15 md:w-14 md:h-14 flex flex-col items-center text-center peer-checked:bg-black peer-checked:text-white peer-checked:[&>*]:border-white">
                 <p className="font-bold border-b-2 border-white text-white w-9 mb-1">
                   XL
                 </p>

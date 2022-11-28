@@ -21,90 +21,16 @@ export const loader = async ({ request }: { request: Request }) => {
 
 export default function Main() {
   const data = useLoaderData();
-  console.log("all data", data);
-  const users = data.users;
-  console.log("users", users);
-  const componentArray = [
-    <Item
-      key="key-1"
-      image="mountain_guardian.jpg"
-      price="199.99"
-      art_name="Mountain Gurardian"
-    />,
-    <Item
-      key="key-2"
-      image="silent_nature.jpg"
-      price="169.99"
-      art_name="Silent Nature"
-    />,
-    <Item
-      key="key-3"
-      image="angel_of_death.jpg"
-      price="150.00"
-      art_name="Angel Of Death"
-    />,
-    <Item
-      key="key-4"
-      image="old_town_road.jpg"
-      price="135.00"
-      art_name="Old Town Road"
-    />,
-    <Item
-      key="key-5"
-      image="the_heavens.jpg"
-      price="239.99"
-      art_name="The Heavens"
-    />,
-    <Item
-      key="key-6"
-      image="space_dogs.jpg"
-      price="95.00"
-      art_name="Space Dogs"
-    />,
-    <Item
-      key="key-7"
-      image="the_lighthouse.jpg"
-      price="370.00"
-      art_name="The Lighthouse"
-    />,
-    <Item
-      key="key-8"
-      image="the_chosen_one.jpg"
-      price="400.00"
-      art_name="The Chosen One"
-    />,
-    <Item
-      key="key-9"
-      image="faster_than_the_speed_of_light.jpg"
-      price="150.00"
-      art_name="Faster Than The Speed Of Light"
-    />,
-    <Item
-      key="key-10"
-      image="ghost_town.jpg"
-      price="220.00"
-      art_name="Ghost Town"
-    />,
-    <Item
-      key="key-11"
-      image="80s_london.jpg"
-      price="80.00"
-      art_name="80s London"
-    />,
-    <Item key="key-12" image="hole.jpg" price="250.00" art_name="Hole" />,
-    <Item
-      key="key-13"
-      image="burning_harbor.jpg"
-      price="330.00"
-      art_name="Burning Harbor"
-    />,
-    <Item
-      key="key-14"
-      image="ai_robot.jpg"
-      price="349.99"
-      art_name="A.I. Robot"
-    />,
-  ];
+  const products = data.products;
+  let sizeTracker = 1;
+  const componentArray: React.ReactElement[] =[];
+  for(let i:number = 0; i<products.length; i+=4 ){
+    if(sizeTracker == 1){
+      componentArray[i] = <Item key={i} image={products[i].productName + ".jpg"} priceS={products[i].productPrice} priceM={products[i+1].productPrice} priceL={products[i+2].productPrice} priceXl={products[i+3].productPrice} art_name={products.productName}  />
+    }
+  };
+  console.log("array",componentArray)
+  
   return (
     <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
       <Navbar />
