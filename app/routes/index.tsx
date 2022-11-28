@@ -2,6 +2,8 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Link } from "@remix-run/react";
 import { PrismaClient } from '@prisma/client'
+import { json } from "@remix-run/node";
+
 
 export default function Index() {
   

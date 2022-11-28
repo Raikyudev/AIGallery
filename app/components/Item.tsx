@@ -1,30 +1,29 @@
 import { ActionFunction, json, redirect } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Form, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import { useCart } from "~/hooks/useCart";
 import { getSession, commitSession, destroySession } from "~/utils/items-session";
 
-export const loader = async ({ request }: { request: Request }) => {
-  // Read session from cookie
-  const session = await getSession(request.headers.get("Cookie"));
+import { createFileUploadHandler } from "@remix-run/node/dist/upload/fileUploadHandler";
+import { PrismaClient } from "@prisma/client";
 
-  // Increment by 1 if exists, otherwise set to 1
-  const basket: string[] = session.get("basket") || [];
-
-  // Create new cookie string
-  session.set("basket", basket);
-  const cookie = await commitSession(session);
-
-  // Set new cookie in headers
-  return json(
-    { basket },
-    {
-      headers: {
-        "Set-Cookie": cookie,
-      },
-    }
-  );
+export const action: ActionFunction = async({ request }: { request: Request }) =>{
+  const form = await request.formData();
+  const prisma = new PrismaClient();
+  const data = useLoaderData();
+  if(!data.orders){
+    const newOrder = prisma.orders.create({
+      data: {
+        customerID: 1,
+        OrderDate: "null",
+        paymentDate: "null",
+      }
+    })
+  }
+  console.log("Prisma orders",prisma.orders.findMany())
+  return true;
 }
+
 export const Item = (props: {
   image: string;
   priceS: number;
@@ -34,7 +33,8 @@ export const Item = (props: {
   art_name: string;
 } ) => {
 
-  const session = useLoaderData();
+  const data = useLoaderData();
+  console.log(data.orders)
   const [isShown, setIsShown] = useState(false);
   const [currentPrice, changePrice] = useState(props.priceS);
 
@@ -44,18 +44,13 @@ export const Item = (props: {
   const closeMenu = () => {
     setIsShown(false);
   };
-
-  const { cart, addToCart } = useCart();
+  
   const handleClick = () => {
-
-    const basket = session.basket;
-    basket[basket.length] = props.art_name;
-
-    console.log(basket)
-  };
-
+    
+  }
 
   return (
+    <Form reloadDocument method="post" action="/main">
     <div
       onMouseLeave={closeMenu}
       onMouseEnter={displayMenu}
@@ -72,7 +67,7 @@ export const Item = (props: {
         <div>
           <div className="ml-2 flex flex-col items-start w-60 md:w-72 mb-1">
             <p className="font-bold text-white">{props.art_name}</p>
-            <p className="font-bold text-white">Price: £{currentPrice}</p>
+            <p className="font-bold text-white">Price: £{currentPrice.toFixed(2)}</p>
           </div>
           <div className="flex gap-2 mb-4 h-20 items-center ml-2">
             <p className="font-bold text-white">Size: </p>
@@ -148,5 +143,7 @@ export const Item = (props: {
         </div>
       )}
     </div>
+    </Form>
+    
   );
 };

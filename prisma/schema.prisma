@@ -3,7 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output = "../node_modules/.prisma/client"
+  output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -11,34 +11,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Products{
-  productID Int @id @default(autoincrement())
-  productName String @db.VarChar(50)  
-  productPrice Float 
-  productSize String @db.VarChar(20)
-
+model Products {
+  productID    Int    @id @default(autoincrement())
+  productName  String @db.VarChar(50)
+  productPrice Float
+  productSize  String @db.VarChar(20)
+  orderItems OrderItems[]
 }
 
-model Customers{
-  customerID Int @id @default(autoincrement())
-  customerLastName String @db.VarChar(50)  @unique
+model Customers {
+  customerID        Int    @id @default(autoincrement())
+  customerLastName  String @unique @db.VarChar(50)
   customerFirstName String @db.VarChar(50)
-  phoneNumber String @db.VarChar(20) 
-  email String @db.VarChar(20)
-  password String @db.VarChar(300) @default("")
-
-}
-model Orders{
-  orderID Int @id @default(autoincrement())
-  customerID Int
-  OrderDate DateTime 
-  paymentDate DateTime
+  phoneNumber       String @db.VarChar(20)
+  email             String @db.VarChar(100)
+  password          String @default("") @db.VarChar(300)
+  orders Orders[]
 }
 
-model OrderItems{
-  orderItemID Int @id @default(autoincrement())
-  productId Int
-  quantity Float
-  price Float
-  customerID Int @default(0)
+model Orders {
+  orderID       Int      @id @default(autoincrement())
+  customer Customers @relation(fields: [customerID], references:[customerID])
+  customerID    Int 
+  OrderDate     DateTime
+  paymentDate   DateTime
+  hasCheckedOut Boolean  @default(false)
+  orderItems OrderItems[]
+}
+
+model OrderItems {
+  orderItemID Int   @id @default(autoincrement())
+  product Products @relation(fields: [productId], references: [productID])
+  productId   Int
+  quantity    Float
+  price       Float
+  customerID  Int   @default(0)
+  order Orders @relation(fields: [orderID], references: [orderID])
+  orderID Int
 }
