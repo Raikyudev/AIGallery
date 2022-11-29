@@ -2,8 +2,8 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form } from "@remix-run/react";
-import { authenticator } from "~/auth.server"; 
-import { getSession, commitSession } from "./components/session.server";
+import { authenticator } from "~/components/auth.server"; 
+import { getSession, commitSession } from "~/components/session.server";
 
 export async function action({ request }: ActionArgs) {
   authenticator.authenticate("local", request, {
