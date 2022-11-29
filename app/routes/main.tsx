@@ -31,17 +31,39 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
       customerID: 1,
     },
   });
-  console.log("boolean orders", !orders);
-  if(!orders){
+  console.log("boolean orders", orders.length == 0);
+  if(orders.length == 0){
     const newOrder = await prisma.orders.create({
       data: {
         customerID: 1,
-        OrderDate: "null",
-        paymentDate: "null",
+        OrderDate: "2020-12-31T21:07:14-05:00",
+        paymentDate: "2020-12-31T21:07:14-05:00",
       },
     });
+    
   }else{
-    console.log("orders",orders);
+    let basketOrder = await prisma.orders.findMany({
+      where: {
+        customerID: 1,
+        hasCheckedOut: false
+      }
+    })
+    if(basketOrder.length == 0){
+      let newOrder = await prisma.orders.create({
+        data: {
+          customerID: 1,
+          OrderDate: "2020-12-31T21:07:14-05:00",
+          paymentDate: "2020-12-31T21:07:14-05:00",
+        },
+      });
+      basketOrder = await prisma.orders.findMany({
+        where: {
+          customerID: 1,
+          hasCheckedOut: false
+        }
+      });
+    }
+    
   }
   return true;
 }
