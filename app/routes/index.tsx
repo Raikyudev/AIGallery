@@ -5,6 +5,7 @@ import { PrismaClient } from '@prisma/client'
 import { json } from "@remix-run/node";
 
 
+
 export default function Index() {
   
 
