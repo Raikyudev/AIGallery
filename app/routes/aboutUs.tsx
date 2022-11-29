@@ -87,7 +87,7 @@ const aboutUs = () => {
                 AI"
             className="lg:w-64 lg:h-64 w-32 h-32 border-solid border-black border-4 "
           />
-          <p className="text-xl font-raleway, p-4 font-bold mt-5">Name</p>
+          <p className="text-xl font-raleway, p-4 font-bold mt-5">Hatem Chahir</p>
         </div>
         <div className="flex flex-col items-center justify-center mx-8">
           <img
@@ -96,7 +96,7 @@ const aboutUs = () => {
                 AI"
             className="lg:w-64 lg:h-64 w-32 h-32 border-solid border-black border-4 "
           />
-          <p className="text-xl font-raleway, p-4 font-bold mt-5">Name</p>
+          <p className="text-xl font-raleway, p-4 font-bold mt-5">Ahdil Butt</p>
         </div>
         <div className="flex flex-col items-center justify-center mx-8">
           <img
@@ -105,7 +105,7 @@ const aboutUs = () => {
                 AI"
             className="lg:w-64 lg:h-64 w-32 h-32 border-solid border-black border-4 "
           />
-          <p className="text-xl font-raleway, p-4 font-bold mt-5">Name</p>
+          <p className="text-xl font-raleway, p-4 font-bold mt-5">Abdulla Al-Hashmi</p>
         </div>
         <div className="flex flex-col items-center justify-center mx-8">
           <img
@@ -114,7 +114,7 @@ const aboutUs = () => {
                 AI"
             className="lg:w-64 lg:h-64 w-32 h-32 border-solid border-black border-4 "
           />
-          <p className="text-xl font-raleway, p-4 font-bold mt-5">Name</p>
+          <p className="text-xl font-raleway, p-4 font-bold mt-5">Oluwasuyi Ajayi</p>
         </div>
       </div>
       <Footer />
