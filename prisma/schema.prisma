@@ -51,3 +51,4 @@ model OrderItems {
   order Orders @relation(fields: [orderID], references: [orderID])
   orderID Int
 }
+
