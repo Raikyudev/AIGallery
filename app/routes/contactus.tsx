@@ -15,7 +15,7 @@ export default function Contactus() {
                     </div>
                     <div className="flex flex-row justify-between items-center w-full p-4 mb-8 lg:p-10">
                         <img className="inline w-8 h-8 lg:w-16 lg:h-16 " src="/assets/email_2.png"></img>
-                        <a className="inline text-xs lg:text-3xl underline text-blue-600 hover:text-blue-800 visited:text-purple-600" href="mailto:aigallery@aigallery.com">aigallery@aigallery.com</a>
+                        <a className="inline text-xs lg:text-3xl underline text-blue-600 hover:text-blue-800 visited:text-purple-600" href="mailto:infoaigallery@gmail.com">infoaigallery@gmail.com</a>
                     </div>
                     <div className="flex flex-row justify-between w-full p-4 mb-2 items-center lg:pt-10 lg:px-10">
                         <img className="inline w-8 h-8 lg:w-16 lg:h-16" src="/assets/home_1.png"></img>

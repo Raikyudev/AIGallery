@@ -6,6 +6,7 @@ import jasonpfp from "../assets/giphy (1).gif";
 import sebpfp from "../assets/sebpfp.jpg";
 import ab from "../assets/ab.png";
 import ted from "../assets/tec_in_ted.png";
+import hatem from "../assets/hatem.png";
 
 const aboutUs = () => {
   return (
@@ -82,12 +83,12 @@ const aboutUs = () => {
       <div className="flex flex-row items-center justify-center mt-20 mb-20">
         <div className="flex flex-col items-center justify-center mx-8">
           <img
-            src={bg}
+            src={hatem}
             alt="
                 AI"
             className="lg:w-64 lg:h-64 w-32 h-32 border-solid border-black border-4 "
           />
-          <p className="text-xl font-raleway, p-4 font-bold mt-5">Name</p>
+          <p className="text-xl font-raleway, p-4 font-bold mt-5">Hatem Chahir</p>
         </div>
         <div className="flex flex-col items-center justify-center mx-8">
           <img
@@ -96,7 +97,7 @@ const aboutUs = () => {
                 AI"
             className="lg:w-64 lg:h-64 w-32 h-32 border-solid border-black border-4 "
           />
-          <p className="text-xl font-raleway, p-4 font-bold mt-5">Name</p>
+          <p className="text-xl font-raleway, p-4 font-bold mt-5">Ahdil Butt</p>
         </div>
         <div className="flex flex-col items-center justify-center mx-8">
           <img
@@ -105,7 +106,7 @@ const aboutUs = () => {
                 AI"
             className="lg:w-64 lg:h-64 w-32 h-32 border-solid border-black border-4 "
           />
-          <p className="text-xl font-raleway, p-4 font-bold mt-5">Name</p>
+          <p className="text-xl font-raleway, p-4 font-bold mt-5">Abdulla Al-Hashmi</p>
         </div>
         <div className="flex flex-col items-center justify-center mx-8">
           <img
@@ -114,7 +115,7 @@ const aboutUs = () => {
                 AI"
             className="lg:w-64 lg:h-64 w-32 h-32 border-solid border-black border-4 "
           />
-          <p className="text-xl font-raleway, p-4 font-bold mt-5">Name</p>
+          <p className="text-xl font-raleway, p-4 font-bold mt-5">Oluwasuyi Ajayi</p>
         </div>
       </div>
       <Footer />
