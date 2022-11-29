@@ -7,22 +7,7 @@ import { getSession, commitSession, destroySession } from "~/utils/items-session
 import { createFileUploadHandler } from "@remix-run/node/dist/upload/fileUploadHandler";
 import { PrismaClient } from "@prisma/client";
 
-export const action: ActionFunction = async({ request }: { request: Request }) =>{
-  const form = await request.formData();
-  const prisma = new PrismaClient();
-  const data = useLoaderData();
-  if(!data.orders){
-    const newOrder = prisma.orders.create({
-      data: {
-        customerID: 1,
-        OrderDate: "null",
-        paymentDate: "null",
-      }
-    })
-  }
-  console.log("Prisma orders",prisma.orders.findMany())
-  return true;
-}
+
 
 export const Item = (props: {
   image: string;
@@ -49,8 +34,14 @@ export const Item = (props: {
     
   }
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log("nice");
+    
+  }
+
   return (
-    <Form reloadDocument method="post" action="/main">
+    <form method="POST" action="/main">
     <div
       onMouseLeave={closeMenu}
       onMouseEnter={displayMenu}
@@ -136,14 +127,15 @@ export const Item = (props: {
           </div>
           <button
             className="font-bold bg-white text-black px-10 w-60 h-10 md:w-72 md:h-10 ml-1 md:ml-2"
-            onClick={handleClick}
+            
+            type="submit"
           >
             Add to basket
           </button>
         </div>
       )}
     </div>
-    </Form>
+    </form>
     
   );
 };

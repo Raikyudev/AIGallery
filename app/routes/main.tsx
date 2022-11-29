@@ -3,8 +3,8 @@ import { Footer } from "../components/Footer";
 import { Item } from "../components/Item";
 import { useState } from "react";
 import { useCart } from "~/hooks/useCart";
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { ActionFunction, json } from "@remix-run/node";
+import { useLoaderData, useActionData } from "@remix-run/react";
 import { getSession, commitSession } from "~/utils/items-session";
 import { PrismaClient} from "@prisma/client";
 
@@ -23,6 +23,28 @@ const handleClick = () => {
     }
   }
 */
+export const action: ActionFunction = async({ request }: { request: Request }) =>{
+  const form = await request.formData();
+  const prisma = new PrismaClient();
+  const orders = await prisma.orders.findMany({
+    where: {
+      customerID: 1,
+    },
+  });
+  console.log("boolean orders", !orders);
+  if(!orders){
+    const newOrder = await prisma.orders.create({
+      data: {
+        customerID: 1,
+        OrderDate: "null",
+        paymentDate: "null",
+      },
+    });
+  }else{
+    console.log("orders",orders);
+  }
+  return true;
+}
 
 export const loader = async ({ request }: { request: Request }) => {
   const prisma = new PrismaClient();
@@ -44,7 +66,8 @@ export default function Main() {
       componentArray[i] = <Item key={i} image={products[i].productName + ".jpg"} priceS={products[i].productPrice} priceM={products[i+1].productPrice} priceL={products[i+2].productPrice} priceXl={products[i+3].productPrice} art_name={products.productName}  />
   
   };
-
+  const actionData = useActionData();
+  console.log("action", actionData);
   
   return (
     <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
