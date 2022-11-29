@@ -10,19 +10,7 @@ import { PrismaClient} from "@prisma/client";
 
 
 
-/*
-const handleClick = () => {
-    if(data.orders.isEmpty()){
-      const newOrder = prisma.orders.create({
-        data: {
-          customerID: 1,
-          OrderDate: "null",
-          paymentDate: "null",
-        }
-      })
-    }
-  }
-*/
+
 export const action: ActionFunction = async({ request }: { request: Request }) =>{
   const form = await request.formData();
   const prisma = new PrismaClient();

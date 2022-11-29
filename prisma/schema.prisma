@@ -25,7 +25,9 @@ model Customers {
   customerFirstName String @db.VarChar(50)
   phoneNumber       String @db.VarChar(20)
   email             String @db.VarChar(100)
-  password          String @default("") @db.VarChar(300)
+  password          String @db.VarChar(300)
+  role              String @db.VarChar(20) @default("USER")
+  username          String @db.VarChar(40) @unique
   orders Orders[]
 }
 
