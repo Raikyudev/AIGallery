@@ -1,5 +1,5 @@
 import { Authenticator } from "remix-auth";
-import { sessionStorage } from "~/session.server";
+import { sessionStorage } from "~/components/session.server";
 
 type User = { id: string; name: string; email: string };
 
