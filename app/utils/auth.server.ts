@@ -36,7 +36,7 @@ export async function register(user: RegisterForm) {
     {status:400}
     )
     }
-    return createUserSession(newUser.id, '/');
+    return createUserSession(String(newUser.id), '/');
 }
 export const  login = async (form: LoginForm) => {
         
@@ -49,7 +49,7 @@ export const  login = async (form: LoginForm) => {
       return json({ error: `Incorrect login` }, { status: 400 })
 
     
-    return createUserSession(user.id,'/')
+    return createUserSession(String(user[0].customerID),'/')
 }
 
 export const createUserSession = async(userID: string, redirectTo: string) => {
