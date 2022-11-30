@@ -2,11 +2,13 @@ import { EntryContext, LinksFunction, LoaderFunction, redirect} from "@remix-run
 import { flushSync } from "react-dom";
 import stylesUrl from "../styles/root.css"
 import {Form} from "@remix-run/react"
+/*
 import { db } from "../utils/db.server"
+*/
 import {  z } from "zod"
 import { Navbar } from "../components/Navbar";
 
-
+/*
 export const links: LinksFunction = () => {
   return [
     {
@@ -40,6 +42,7 @@ export async function action({request}){
   return null
 
 }
+*/
 
 export default function IndexRoutes(){
   return (

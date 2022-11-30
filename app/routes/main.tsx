@@ -12,45 +12,44 @@ import { PrismaClient} from "@prisma/client";
 
 
 export const action: ActionFunction = async({ request }: { request: Request }) =>{
-  const form = await request.formData();
+  const formData = await request.formData();
+  console.log("Form data",formData)
   const prisma = new PrismaClient();
   const orders = await prisma.orders.findMany({
     where: {
-      customerID: 1,
+      customerID: 2,
     },
   });
+  console.log(prisma.orders);
   console.log("boolean orders", orders.length == 0);
   if(orders.length == 0){
     const newOrder = await prisma.orders.create({
       data: {
-        customerID: 1,
-        OrderDate: "2020-12-31T21:07:14-05:00",
-        paymentDate: "2020-12-31T21:07:14-05:00",
-      },
+        customerID: 2,
+      }
     });
     
   }else{
     let basketOrder = await prisma.orders.findMany({
       where: {
-        customerID: 1,
+        customerID: 2,
         hasCheckedOut: false
       }
     })
     if(basketOrder.length == 0){
       let newOrder = await prisma.orders.create({
         data: {
-          customerID: 1,
-          OrderDate: "2020-12-31T21:07:14-05:00",
-          paymentDate: "2020-12-31T21:07:14-05:00",
+          customerID: 2,
         },
       });
       basketOrder = await prisma.orders.findMany({
         where: {
-          customerID: 1,
+          customerID: 2,
           hasCheckedOut: false
         }
       });
     }
+
     
   }
   return true;
