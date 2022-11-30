@@ -1,8 +1,13 @@
 import {Layout} from "~/components/layout"
 import {FormField} from "~/components/form-field"
 import { useState } from 'react'
+import { ActionFunction } from "@remix-run/node";
 
+export const action: ActionFunction = async({request}) => {
+  const form = await request.formData()
+  
 
+}
 export default function Login() {
 
   const [action,setAction] = useState('login');
