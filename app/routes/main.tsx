@@ -13,6 +13,7 @@ import { PrismaClient} from "@prisma/client";
 
 export const action: ActionFunction = async({ request }: { request: Request }) =>{
   //setting form data
+  //
   const formData = await request.formData();
   const size = String(formData.get("size"));
   const artName = String(formData.get("artName"));
