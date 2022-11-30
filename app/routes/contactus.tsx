@@ -6,7 +6,7 @@ export default function Contactus() {
     return(
         <div className="h-screen">
             <Navbar />
-            <main className="flex flex-col items-center">
+            <main className="flex flex-col items-center mb-16">
                 <div className="flex flex-col border-solid border-2 border-black w-3/4 items-center mt-24 lg:mt-8 lg:w-1/2">
                     <p className="font-bold text-xl w-3/4 border-solid border-b-2 border-black text-center m-2 lg:pb-4 lg:text-5xl"> Contact us</p>
                     <div className="flex flex-row justify-between w-full p-4 mb-8 items-center lg:p-10">
