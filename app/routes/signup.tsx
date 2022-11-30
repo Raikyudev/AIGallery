@@ -1,10 +1,11 @@
 import { EntryContext, LinksFunction, LoaderFunction, redirect} from "@remix-run/node";
 import { flushSync } from "react-dom";
-
+import stylesUrl from "../styles/root.css"
 import {Form, useLoaderData, useTransition} from "@remix-run/react"
-import { PrismaClient, Customers } from "@prisma/client";
+//import { db } from "../utils/db.server"
 import {  z } from "zod"
 import { Navbar } from "../components/Navbar";
+import { PrismaClient, Customers } from "@prisma/client";
 
 
 export const userSchema = z.object({
@@ -16,27 +17,27 @@ export const userSchema = z.object({
 
 })
 
-export async function loader() {
+export async function loader({ request }) {
   const prisma = new PrismaClient();
   const allUsers = await prisma.customers.findMany();
-  console.log("allUsers", allUsers);
+  console.log("allUser", allUsers);
   await prisma.$disconnect();
   return allUsers;
 }
 
 export async function action({request}){
   const formData = await request.formData()
-  const prisma = new PrismaClient();
-  const allUsers = await prisma.customers.create({
+    const prisma = new PrismaClient();
+    const allUsers = await prisma.customers.create({
     data: {customerFirstName: formData.get("customerFirstName"),
-     customerLastName: formData.get("customerLastName"),
-     username: formData.get("username"),
-      email: formData.get("email"),
-      phoneNumber: formData.get("phoneNumber"), 
-      password: formData.get("password")}
-  })
-
-  return null
+    customerLastName: formData.get("customerLastName"), 
+    username: formData.get("username"),
+    email: formData.get("email"),
+    phoneNumber: formData.get("phoneNumber"),
+    password:formData.get("password")}
+  });
+  await prisma.$disconnect();
+  return true;
 
 }
 
@@ -51,7 +52,7 @@ export default function IndexRoutes(){
       <div id ="customer">
        <div id = "signup">
         
-        <Form method= "post" id= "signup" >
+        <Form method= "post" id= "signup">
         <h2>Customer Signup</h2>
           <input type ="text" name="customerFirstName" placeholder="First Name"/><br/>
           <input type ="text" name="customerLastName" placeholder="Last Name"/><br/>
@@ -61,7 +62,7 @@ export default function IndexRoutes(){
           <input id="password" type ="password" name="password" placeholder="Password"/><br/>
           <input id="confirm" type ="password" name="confirm" placeholder="Confirm Password"/><br/>
           <button type="submit" disabled={busy}>
-          {busy ? "Submiting..." : "Submit"}
+          {busy ? "Submitting..." : "Submit"}
         </button>
         </Form> 
  

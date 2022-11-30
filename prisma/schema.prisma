@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
   output   = "../node_modules/.prisma/client"
@@ -16,38 +13,43 @@ model Products {
   productName  String @db.VarChar(50)
   productPrice Float
   productSize  String @db.VarChar(20)
-  orderItems OrderItems[]
+
+  OrderItems OrderItems?
 }
 
 model Customers {
-  customerID        Int    @id @default(autoincrement())
-  customerLastName  String @unique @db.VarChar(50)
-  customerFirstName String @db.VarChar(50)
-  phoneNumber       String @db.VarChar(20)
-  email             String @db.VarChar(100)
-  password          String @db.VarChar(300)
-  role              String @db.VarChar(20) @default("USER")
-  username          String @db.VarChar(40) @unique
-  orders Orders[]
+  customerID        Int      @id @default(autoincrement())
+  customerLastName  String   @unique @db.VarChar(50)
+  customerFirstName String   @db.VarChar(50)
+  phoneNumber       String   @db.VarChar(20)
+  email             String   @db.VarChar(100)
+  password          String   @db.VarChar(300)
+  role              String   @default("USER") @db.VarChar(20)
+  username          String   @unique @db.VarChar(40)
+  orders            Orders[]
 }
 
 model Orders {
-  orderID       Int      @id @default(autoincrement())
-  customer Customers @relation(fields: [customerID], references:[customerID])
-  customerID    Int 
-  OrderDate     DateTime @default("2020-12-31T21:07:14-05:00")
-  paymentDate   DateTime @default("2020-12-31T21:07:14-05:00")
-  hasCheckedOut Boolean  @default(false)
-  orderItems OrderItems[]
+  orderID       Int          @id @default(autoincrement())
+  customerID    Int
+  orderDate     DateTime     @default(dbgenerated("'2021-01-01 02:07:14.000'"))
+  paymentDate   DateTime     @default(dbgenerated("'2021-01-01 02:07:14.000'"))
+  hasCheckedOut Boolean      @default(false)
+  customer      Customers    @relation(fields: [customerID], references: [customerID])
+  orderItems    OrderItems[]
+
+  @@index([customerID], map: "Orders_customerID_fkey")
 }
 
 model OrderItems {
-  orderItemID Int   @id @default(autoincrement())
-  product Products @relation(fields: [productId], references: [productID])
-  productId   Int
-  quantity    Float
+  orderItemID Int      @id @default(autoincrement())
+  productId   Int @unique
+  quantity    Int
   price       Float
-  customerID  Int   @default(0)
-  order Orders @relation(fields: [orderID], references: [orderID])
-  orderID Int
+  orderID     Int
+  order       Orders   @relation(fields: [orderID], references: [orderID])
+  product     Products @relation(fields: [productId], references: [productID])
+
+  @@index([orderID], map: "OrderItems_orderID_fkey")
+  @@index([productId], map: "OrderItems_productId_fkey")
 }

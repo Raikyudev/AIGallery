@@ -6,7 +6,7 @@ import { getSession, commitSession, destroySession } from "~/utils/items-session
 
 import { createFileUploadHandler } from "@remix-run/node/dist/upload/fileUploadHandler";
 import { PrismaClient } from "@prisma/client";
-
+import { useSubmit, useTransition } from "@remix-run/react";
 
 
 export const Item = (props: {
@@ -19,7 +19,6 @@ export const Item = (props: {
 } ) => {
 
   const data = useLoaderData();
-  console.log(data.orders)
   const [isShown, setIsShown] = useState(false);
   const [currentPrice, changePrice] = useState(props.priceS);
 
@@ -39,9 +38,11 @@ export const Item = (props: {
     console.log("nice");
     
   }
+  const artNameArray = props.art_name.split("_");
+  const artName = artNameArray.join(" ").toUpperCase();
 
   return (
-    <form method="POST" action="/main">
+    <Form method="post" action="/main" name="itemForm">
     <div
       onMouseLeave={closeMenu}
       onMouseEnter={displayMenu}
@@ -57,7 +58,7 @@ export const Item = (props: {
       {isShown && (
         <div>
           <div className="ml-2 flex flex-col items-start w-60 md:w-72 mb-1">
-            <p className="font-bold text-white">{props.art_name}</p>
+            <p className="font-bold text-white">{artName}</p>
             <p className="font-bold text-white">Price: £{currentPrice.toFixed(2)}</p>
           </div>
           <div className="flex gap-2 mb-4 h-20 items-center ml-2">
@@ -124,10 +125,11 @@ export const Item = (props: {
                 <p className="text-xs font-bold text-white">20" x 30"</p>
               </div>
             </label>
+            <input type="hidden" id="artName" name="artName" value={props.art_name} defaultValue="name" />
           </div>
+          
           <button
             className="font-bold bg-white text-black px-10 w-60 h-10 md:w-72 md:h-10 ml-1 md:ml-2"
-            
             type="submit"
           >
             Add to basket
@@ -135,7 +137,7 @@ export const Item = (props: {
         </div>
       )}
     </div>
-    </form>
+    </Form>
     
   );
 };

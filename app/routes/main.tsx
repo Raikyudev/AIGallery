@@ -12,48 +12,108 @@ import { PrismaClient} from "@prisma/client";
 
 
 export const action: ActionFunction = async({ request }: { request: Request }) =>{
-  const form = await request.formData();
+  //setting form data
+  //
+  const formData = await request.formData();
+  const size = String(formData.get("size"));
+  const artName = String(formData.get("artName"));
+
   const prisma = new PrismaClient();
+
+  //looking for orders assigned to current customer
   const orders = await prisma.orders.findMany({
     where: {
-      customerID: 1,
+      customerID: 2,
     },
   });
+  console.log(prisma.orders);
   console.log("boolean orders", orders.length == 0);
+  console.log("orders", orders)
+
+  //if there's no orders, make a new order
   if(orders.length == 0){
     const newOrder = await prisma.orders.create({
       data: {
-        customerID: 1,
-        OrderDate: "2020-12-31T21:07:14-05:00",
-        paymentDate: "2020-12-31T21:07:14-05:00",
-      },
+        customerID: 2,
+      }
     });
     
-  }else{
-    let basketOrder = await prisma.orders.findMany({
-      where: {
-        customerID: 1,
-        hasCheckedOut: false
-      }
-    })
+  }
+
+  //find if there's already a basket order (hasCheckedOut should be false)
+  let basketOrder = await prisma.orders.findMany({
+    where: {
+      customerID: 2,
+      hasCheckedOut: false
+    }
+  })
+    console.log("basket length boolean" , basketOrder.length == 0)
+
+    //if there's no basket orders, create one
     if(basketOrder.length == 0){
       let newOrder = await prisma.orders.create({
         data: {
-          customerID: 1,
-          OrderDate: "2020-12-31T21:07:14-05:00",
-          paymentDate: "2020-12-31T21:07:14-05:00",
+          customerID: 2,
         },
       });
-      basketOrder = await prisma.orders.findMany({
-        where: {
-          customerID: 1,
-          hasCheckedOut: false
+
+    //pull basket order from the database
+    basketOrder = await prisma.orders.findMany({
+      where: {
+        customerID: 2,
+        hasCheckedOut: false
+      }
+    });
+    }
+
+    //find the currently added item
+    const item = await prisma.products.findMany({
+      where:{
+        productName:artName,
+        productSize: size
+      }
+    });
+
+    let quantity = 0;
+
+    //find if the item is already in the basket
+    let orderItems: any = []
+    orderItems = await prisma.orderItems.findMany({
+      where:{
+        productId: item[0].productID,
+        orderID: basketOrder[0].orderID
+      }
+    })
+
+    //if the item isn't in the basket, make a new orderItem and add it to the basket
+    if(orderItems.length == 0){
+      quantity = 1;
+      orderItems = await prisma.orderItems.create({
+        data:{
+          productId: item[0].productID,
+          quantity: quantity,
+          price: item[0].productPrice,
+          orderID: basketOrder[0].orderID
         }
-      });
+      })
+    //if the item is in the basket, find how many there are and increase the quantity by 1
+    }else{
+      quantity = orderItems[0].quantity
+      const updateItem = await prisma.orderItems.update({
+        where: {
+          orderItemID: orderItems[0].orderItemID
+        },
+        data:{
+          quantity: quantity+1
+        }
+      })
     }
     
-  }
-  return true;
+   console.log("basket order end", basketOrder);
+   console.log("orderItems end", orderItems)
+    
+  await prisma.$disconnect();
+  return basketOrder;
 }
 
 export const loader = async ({ request }: { request: Request }) => {
@@ -73,7 +133,7 @@ export default function Main() {
   const products = data.products;
   const componentArray: React.ReactElement[] =[];
   for(let i:number = 0; i<products.length; i+=4 ){
-      componentArray[i] = <Item key={i} image={products[i].productName + ".jpg"} priceS={products[i].productPrice} priceM={products[i+1].productPrice} priceL={products[i+2].productPrice} priceXl={products[i+3].productPrice} art_name={products.productName}  />
+      componentArray[i] = <Item key={i} image={products[i].productName + ".jpg"} priceS={products[i].productPrice} priceM={products[i+1].productPrice} priceL={products[i+2].productPrice} priceXl={products[i+3].productPrice} art_name={products[i].productName}  />
   
   };
   const actionData = useActionData();
