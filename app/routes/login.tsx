@@ -12,6 +12,8 @@ export default function Login() {
     password: '',
     firstName: '',
     lastName: '',
+    username:'',
+    phoneNumber:'',
   })
 
   // Updates the form data when an input changes
@@ -61,6 +63,18 @@ export default function Login() {
                 onChange={e => handleInputChange(e, 'lastName')}
                 value={formData.lastName}
               />
+              <FormField
+            htmlFor="username"
+            label="Username"
+            value={formData.username}
+            onChange={e => handleInputChange(e, 'username')}
+          />
+                    <FormField
+            htmlFor="phoneNumber"
+            label="PhoneNumber"
+            value={formData.phoneNumber}
+            onChange={e => handleInputChange(e, 'phoneNumber')}
+          />
             </>
            : null
         }
