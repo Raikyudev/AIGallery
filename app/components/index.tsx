@@ -1,1 +1,1 @@
-export {default as UserForm} from '../routes/UserForm'
+export {}

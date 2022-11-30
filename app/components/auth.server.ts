@@ -1,3 +1,4 @@
+/*
 import { Authenticator } from "remix-auth";
 import { sessionStorage } from "~/components/session.server";
 
@@ -10,3 +11,5 @@ authenticator.use(
       return getUserSomehow(username, password);
     })
   );
+  */
+ export{}

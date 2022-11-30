@@ -44,9 +44,8 @@ model Orders {
 model OrderItems {
   orderItemID Int      @id @default(autoincrement())
   productId   Int @unique
-  quantity    Float
+  quantity    Int
   price       Float
-  customerID  Int
   orderID     Int
   order       Orders   @relation(fields: [orderID], references: [orderID])
   product     Products @relation(fields: [productId], references: [productID])

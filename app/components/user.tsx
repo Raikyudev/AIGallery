@@ -1,6 +1,6 @@
 import { FormStrategy } from "remix-auth-form";
 
-
+/*
 authenticator.use(
   new FormStrategy(async ({ form }) => {
     let email = form.get("email");
@@ -13,3 +13,4 @@ authenticator.use(
   // same strategy multiple times, especially useful for the OAuth2 strategy.
   "user-pass"
 );
+*/
