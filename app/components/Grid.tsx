@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Grid = ({ items, className, ...attrs }) => {
+export const Grid = ({ items, className, ...attrs }) => {
     return (
       <>
         {items.length < 1 && (
