@@ -1,4 +1,6 @@
-import { Navbar } from "../components/Navbar";
+import Grid from "~/components/Grid"
+
+const customer = [1,2,3]
 import { useState } from 'react'
 
 const customers = [
@@ -27,8 +29,6 @@ const Table = (props) => {
 }
 
 const admin = () => {
-
-  const [rows, setRows] = useState(customers)
     return (
         <div>
           <Navbar />
@@ -36,8 +36,6 @@ const admin = () => {
         Customers
         </h1>
         <hr></hr>
-        <Table data = {rows}/>
-
         <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
         Orders
         </h1>
@@ -50,4 +48,4 @@ const admin = () => {
   );
 };
 
-export default admin;
+}
