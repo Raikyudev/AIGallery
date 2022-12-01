@@ -4,7 +4,7 @@ import { Footer } from "~/components/Footer";
 import { PrismaClient } from "@prisma/client";
 import { ActionFunction, json } from "@remix-run/node";
 import { useActionData, useLoaderData } from "@remix-run/react";
-import { basketItem } from "~/components/Item";
+import { BasketItem } from "~/components/BasketItem";
 
 export const action: ActionFunction = async ({
   request,
@@ -22,7 +22,7 @@ export const action: ActionFunction = async ({
   //looking for orders assigned to current customer
   const orders = await prisma.orderItems.findMany({
     where: {
-      orderID: 2,
+      orderID: 1,
     },
   });
   console.log(prisma.orderItems);
@@ -33,7 +33,7 @@ export const action: ActionFunction = async ({
   if (orders.length == 0) {
     const newOrder = await prisma.orders.create({
       data: {
-        customerID: 2,
+        customerID: 1,
       },
     });
   }
@@ -41,7 +41,7 @@ export const action: ActionFunction = async ({
   //find if there's already a basket order (hasCheckedOut should be false)
   let basketOrder = await prisma.orders.findMany({
     where: {
-      customerID: 2,
+      customerID: 1,
       hasCheckedOut: false,
     },
   });
@@ -51,14 +51,14 @@ export const action: ActionFunction = async ({
   if (basketOrder.length == 0) {
     let newOrder = await prisma.orders.create({
       data: {
-        customerID: 2,
+        customerID: 1,
       },
     });
 
     //pull basket order from the database
     basketOrder = await prisma.orders.findMany({
       where: {
-        customerID: 2,
+        customerID: 1,
         hasCheckedOut: false,
       },
     });
@@ -120,14 +120,15 @@ export const loader = async ({ request }: { request: Request }) => {
   const allOrders = await prisma.orderItems.findMany();
   const allProducts = await prisma.products.findMany();
   const allOrderItems = await prisma.orderItems.findMany();
+  console.log
 
   await prisma.$disconnect();
 
   return json({
-    users: allUsers,
-    orders: allOrders,
-    products: allProducts,
-    orderItems: allOrderItems,
+    "users": allUsers,
+    "orders": allOrders,
+    "products": allProducts,
+    "orderItems": allOrderItems,
   });
 };
 
@@ -139,7 +140,7 @@ export default function Basket() {
   const orderArray: React.ReactElement[] = [];
   for (let i: number = 0; i < orderItems.length; i++) {
     orderArray[i] = (
-      <basketItem
+      <BasketItem
         key={i}
         image={orderItems[i].product + ".jpg"}
         price={orderItems[i].price}

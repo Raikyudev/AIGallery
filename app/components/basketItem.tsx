@@ -7,7 +7,7 @@ import { createFileUploadHandler } from "@remix-run/node/dist/upload/fileUploadH
 import { PrismaClient } from "@prisma/client";
 import { useSubmit, useTransition } from "@remix-run/react";
 
-export const basketItem = (props: {
+export const BasketItem = (props: {
   image: string;
   price: number;
   art_name: string;
@@ -22,7 +22,6 @@ export const basketItem = (props: {
 
   const data = useLoaderData();
   const [isShown, setIsShown] = useState(false);
-  const [currentPrice, changePrice] = useState(props.priceS);
 
   const artNameArray = props.art_name.split("_");
   const artName = artNameArray.join(" ").toUpperCase();
@@ -45,7 +44,7 @@ export const basketItem = (props: {
             <div className="ml-2 flex flex-col items-start w-60 md:w-72 mb-1">
               <p className="font-bold text-white">{artName}</p>
               <p className="font-bold text-white">
-                Price: £{currentPrice.toFixed(2)}
+                Price: £{props.price}
               </p>
             </div>
             <div className="flex gap-2 mb-4 h-20 items-center ml-2">
