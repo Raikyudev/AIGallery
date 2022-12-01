@@ -20,9 +20,11 @@ export default function Contactus() {
                     <div className="flex flex-row justify-between w-full p-4 mb-2 items-center lg:pt-10 lg:px-10">
                         <img className="inline w-8 h-8 lg:w-16 lg:h-16" src="/assets/home_1.png"></img>
                         <div className="flex flex-col text-right">
-                            <p className="inline lg:text-3xl">Unit 69, Archingerback Rd</p>
-                            <p className="inline lg:text-3xl">Sheluk, Fiynazhal,</p>
-                            <p className="inline lg:text-3xl">Ambatukumsohard, USA</p>
+                            <p className="inline lg:text-3xl">A.I Gallery</p>
+                            <p className="inline lg:text-3xl">Unit 69, Lancaster Road</p>
+                            <p className="inline lg:text-3xl">Lancashire</p>
+                            <p className="inline lg:text-3xl">LA1 3PY</p>
+                            <p className="inline lg:text-3xl">United Kingdom</p>
                         </div>
                         
                     </div>

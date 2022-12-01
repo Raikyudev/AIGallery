@@ -1,5 +1,5 @@
 import { Navbar } from "../components/Navbar";
-import { useState } from 'react'
+import { useState } from 'react';
 
 const customers = [
   {name: "Ayush", username: " ayush1243"},
@@ -32,6 +32,7 @@ export default function admin()  {
     return (
         <div>
           <Navbar />
+
           <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
         Customers
         </h1>
