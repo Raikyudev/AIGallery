@@ -19,6 +19,9 @@ const admin = () => {
           <div>
             
             <Navbar />
+            <div className="text-2xl flex flex-row items-center justify-center">
+          <input type="text" placeholder="search..." className="search" onChange={(e) => setQuery(e.target.value)}/>
+          </div>
   
             <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
           Customers
@@ -27,9 +30,7 @@ const admin = () => {
 
           <br></br>
 
-          <div className="flex flex-row items-center justify-center">
-          <input type="text" placeholder="search..." className="search" onChange={(e) => setQuery(e.target.value)}/>
-          </div>
+          
           <br></br>
           <div className="flex flex-row items-center justify-center">
           <Table data={search(Users)}/>
@@ -46,6 +47,12 @@ const admin = () => {
           </h1>
           
           <hr></hr>
+          
+          <br></br>
+          <br></br>
+          <div className="flex flex-row items-center justify-center">
+          <Table data={search(Users)}/>
+            </div>
             </div>
     );
   };
