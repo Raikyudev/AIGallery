@@ -1,8 +1,8 @@
 import Grid from "~/components/Grid"
+import { Navbar } from "~/components/Navbar"
 
-const customer = [1,2,3]
 import { useState } from 'react'
-
+const customer = [1,2,3]
 const customers = [
   {name: "Ayush", username: " ayush1243"},
   {name: "avjit", username: " avjit748"},
@@ -47,5 +47,3 @@ const admin = () => {
           </div>
   );
 };
-
-}
