@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useCart } from "~/hooks/useCart";
 import { ActionFunction, json } from "@remix-run/node";
 import { useLoaderData, useActionData } from "@remix-run/react";
-import { getSession, commitSession } from "~/utils/items-session";
 import { PrismaClient} from "@prisma/client";
 
 
