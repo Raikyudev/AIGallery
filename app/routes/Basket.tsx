@@ -38,17 +38,18 @@ export const action: ActionFunction = async ({
     
   } else if(submitType === "removeAll"){
     const deleteAllOrderItems = await prisma.orderItems.deleteMany({});
-  } else {
+  } else if (submitType === "checkout") {
     const currentCustomerID = 1;
-    const currentOrderID = await prisma.orders.findMany({
+    let currentOrder = await prisma.orders.findMany({
       where:{
         customerID: currentCustomerID,
         hasCheckedOut: false,
       }
-    })[0].orderID;
+    });
+    console.log("current order it", currentOrder)
     const checkout = await prisma.orders.update({
       where: {
-        orderID: currentOrderID
+        orderID: currentOrder[0].orderID
       },
       data: {
         hasCheckedOut: true
@@ -61,10 +62,28 @@ export const action: ActionFunction = async ({
 export const loader = async ({ request }: { request: Request }) => {
   const prisma = new PrismaClient();
   const allUsers = await prisma.customers.findMany();
-  const allOrders = await prisma.orderItems.findMany();
+  const allOrders = await prisma.orders.findMany();
   const allProducts = await prisma.products.findMany();
-  const allOrderItems = await prisma.orderItems.findMany();
+ 
 
+  const currentOrderArray = await prisma.orders.findMany({
+    where:{
+      customerID: 1,
+      hasCheckedOut: false
+    }
+  })
+
+  if(currentOrderArray.length == 0){
+    return false;
+  }
+  console.log("order array", currentOrderArray);
+  
+
+  const allOrderItems = await prisma.orderItems.findMany({
+    where:{
+      orderID: currentOrderArray[0].orderID
+    }
+  });
 
   await prisma.$disconnect();
 
@@ -73,6 +92,7 @@ export const loader = async ({ request }: { request: Request }) => {
     orders: allOrders,
     products: allProducts,
     orderItems: allOrderItems,
+    currentOrder: currentOrderArray[0]
   });
 };
 
@@ -80,9 +100,18 @@ export const loader = async ({ request }: { request: Request }) => {
 
 export default function Basket() {
   const data = useLoaderData();
+  if(data === false){
+    return(
+      <div> 
+        <Navbar />
+        <div>No items</div>
+      </div>
+    )
+}
+  const currentOrderID = data.currentOrder.orderID;
   const orderItems = data.orderItems;
   const orderArray: React.ReactElement[] = [];
-
+  
   for (let i: number = 0; i < orderItems.length; i++) {
     let artName = "";
     let price = 0;
