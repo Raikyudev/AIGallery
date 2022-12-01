@@ -15,11 +15,7 @@ export const action: ActionFunction = async ({
   //
   const formData = await request.formData();
   const submitType = formData.get("submitType");
-
 };
-
-
-
 
 export const loader = async ({ request }: { request: Request }) => {
   const prisma = new PrismaClient();
@@ -80,13 +76,13 @@ export default function Basket() {
             {orderArray}
 
             <input
-              className="font-bold bg-white text-black px-10 w-60 h-10  md:h-10 ml-1 md:ml-2 rounded-lg mt-5 "
+              className="font-bold bg-white text-black px-10 w-60 h-10  md:h-10 ml-1 md:ml-2 rounded-lg mt-5 hover:cursor-pointer "
               type="submit"
               name="submitType"
               value="removeAll"
             />
             <input
-              className="font-bold bg-white text-black px-10 w-60 h-10 md:h-10 ml-1 md:ml-2 rounded-lg mt-5"
+              className="font-bold bg-white text-black px-10 w-60 h-10 md:h-10 ml-1 md:ml-2 rounded-lg mt-5 hover:cursor-pointer"
               type="submit"
               name="submitType"
               value="checkout"
