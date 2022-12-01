@@ -2,7 +2,6 @@ import { ActionFunction, json, redirect } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import { useCart } from "~/hooks/useCart";
-import { getSession, commitSession, destroySession } from "~/utils/items-session";
 
 import { createFileUploadHandler } from "@remix-run/node/dist/upload/fileUploadHandler";
 import { PrismaClient } from "@prisma/client";
