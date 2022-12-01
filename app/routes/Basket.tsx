@@ -1,5 +1,4 @@
 import { Navbar } from "~/components/Navbar";
-import bg from "~/assets/mountain_guardian.jpg";
 import { Footer } from "~/components/Footer";
 import { PrismaClient } from "@prisma/client";
 import { ActionFunction, json } from "@remix-run/node";
