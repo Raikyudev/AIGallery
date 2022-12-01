@@ -1,50 +1,42 @@
 import { EntryContext, LinksFunction, LoaderFunction, redirect} from "@remix-run/node";
 import { flushSync } from "react-dom";
 import stylesUrl from "../styles/root.css"
-import {Form} from "@remix-run/react"
-/*
-import { db } from "../utils/db.server"
-*/
-import {  z } from "zod"
+import {Form, useLoaderData, useTransition} from "@remix-run/react"
+
 import { Navbar } from "../components/Navbar";
+import { PrismaClient, Customers } from "@prisma/client";
 
-/*
-export const links: LinksFunction = () => {
-  return [
-    {
-      rel: "stylesheet",
-      href: stylesUrl,
-    }
-  ];
-};
 
-export const userSchema = z.object({
-  customerFirstName: z.string().min(1),
-  customerLastName: z.string().min(1),
-  email: z.string().min(1),
-  phoneNumber: z.string().min(1),
-  password: z.string().min(1)
 
-})
+
+export async function loader({ request }) {
+  const prisma = new PrismaClient();
+  const allUsers = await prisma.customers.findMany();
+  console.log("allUser", allUsers);
+  await prisma.$disconnect();
+  return allUsers;
+}
 
 export async function action({request}){
   const formData = await request.formData()
-  const body = Object.fromEntries(formData.entries())
-
-  const { error, success, data } = userSchema.safeParse(body)
-  console.log(error, success , data)
-
-  
- db.customers.create({
-    data: data
-  })
-
-  return null
+    const prisma = new PrismaClient();
+    const allUsers = await prisma.customers.create({
+    data: {customerFirstName: formData.get("customerFirstName"),
+    customerLastName: formData.get("customerLastName"), 
+    username: formData.get("username"),
+    email: formData.get("email"),
+    phoneNumber: formData.get("phoneNumber"),
+    password:formData.get("password")}
+  });
+  await prisma.$disconnect();
+  return true;
 
 }
-*/
 
 export default function IndexRoutes(){
+  const projects = useLoaderData();
+  const { state } = useTransition();
+  const busy = state === "submitting";
   return (
   <div>
     <Navbar />
@@ -56,11 +48,14 @@ export default function IndexRoutes(){
         <h2>Customer Signup</h2>
           <input type ="text" name="customerFirstName" placeholder="First Name"/><br/>
           <input type ="text" name="customerLastName" placeholder="Last Name"/><br/>
+          <input type ="text" name="username" placeholder="Username"/><br/>
           <input type ="text" name="email" placeholder="Email"/><br/>
           <input type ="text" name="phoneNumber" placeholder="Phone Number"/><br/>
           <input id="password" type ="password" name="password" placeholder="Password"/><br/>
           <input id="confirm" type ="password" name="confirm" placeholder="Confirm Password"/><br/>
-          <input id="submit" type ="submit"  placeholder="Submit1"/>
+          <button type="submit" disabled={busy}>
+          {busy ? "Submitting..." : "Submit"}
+        </button>
         </Form> 
  
         <br/>
@@ -71,18 +66,6 @@ export default function IndexRoutes(){
           <input type ="text" name="names" placeholder="First Name"/><br/>
           <input type ="password" name="password2" placeholder="Password"/><br/>
           <button type = "submit" >Submit</button>
-        </form> 
-        </div>
-        </div>
-
-        <div id = "admin">
-        <div id = "admn_signup">
-        <form id= "signup">
-        <h2>Admin login</h2>
-          <input type ="text" name="name" placeholder="First Name"/><br/>
-          <input type ="password" name="password" placeholder="Password"/><br/>
-          <input type ="password" name="confirm" placeholder="Confirm Password"/><br/>
-          <a id="link" href="#">Already have an account login</a>
         </form> 
         </div>
         </div>
