@@ -13,7 +13,7 @@ CREATE TABLE `Customers` (
     `customerID` INTEGER NOT NULL AUTO_INCREMENT,
     `customerLastName` VARCHAR(50) NOT NULL,
     `customerFirstName` VARCHAR(50) NOT NULL,
-    `phoneNumber` INTEGER NOT NULL,
+    `phoneNumber` VARCHAR(191) NOT NULL,
     `email` VARCHAR(100) NOT NULL,
     `password` VARCHAR(300) NOT NULL,
     `role` VARCHAR(20) NOT NULL DEFAULT 'USER',
@@ -45,9 +45,7 @@ CREATE TABLE `OrderItems` (
     `price` DOUBLE NOT NULL,
     `orderID` INTEGER NOT NULL,
 
-    UNIQUE INDEX `OrderItems_productId_key`(`productId`),
     INDEX `OrderItems_orderID_fkey`(`orderID`),
-    INDEX `OrderItems_productId_fkey`(`productId`),
     PRIMARY KEY (`orderItemID`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
