@@ -9,20 +9,19 @@ datasource db {
 }
 
 model Products {
-  productID    Int    @id @default(autoincrement())
-  productName  String @db.VarChar(50)
+  productID    Int          @id @default(autoincrement())
+  productName  String       @db.VarChar(50)
   productPrice Float
-  productSize  String @db.VarChar(20)
-
-  OrderItems OrderItems?
+  productSize  String       @db.VarChar(20)
+  OrderItems   OrderItems[]
 }
 
 model Customers {
   customerID        Int      @id @default(autoincrement())
   customerLastName  String   @unique @db.VarChar(50)
   customerFirstName String   @db.VarChar(50)
-  phoneNumber       String   @db.VarChar(20)
-  email             String   @db.VarChar(100)
+  phoneNumber       String
+  email             String   @unique @db.VarChar(100)
   password          String   @db.VarChar(300)
   role              String   @default("USER") @db.VarChar(20)
   username          String   @unique @db.VarChar(40)
@@ -43,7 +42,7 @@ model Orders {
 
 model OrderItems {
   orderItemID Int      @id @default(autoincrement())
-  productId   Int @unique
+  productId   Int
   quantity    Int
   price       Float
   orderID     Int

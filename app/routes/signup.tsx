@@ -39,12 +39,11 @@ export async function action({request}){
   await prisma.$disconnect();
   return true;
 
-}
-
 export default function IndexRoutes(){
   const projects = useLoaderData();
   const { state } = useTransition();
   const busy = state === "submitting";
+
   return (
   <div>
     <Navbar />
@@ -57,10 +56,14 @@ export default function IndexRoutes(){
           <input type ="text" name="customerFirstName" placeholder="First Name"/><br/>
           <input type ="text" name="customerLastName" placeholder="Last Name"/><br/>
           <input type ="text" name="username" placeholder="Username"/><br/>
+          <input type ="text" name="username" placeholder="Username"/><br/>
           <input type ="text" name="email" placeholder="Email"/><br/>
           <input type ="text" name="phoneNumber" placeholder="Phone Number"/><br/>
           <input id="password" type ="password" name="password" placeholder="Password"/><br/>
           <input id="confirm" type ="password" name="confirm" placeholder="Confirm Password"/><br/>
+          <button type="submit" disabled={busy}>
+          {busy ? "Submitting..." : "Submit"}
+        </button>
           <button type="submit" disabled={busy}>
           {busy ? "Submitting..." : "Submit"}
         </button>
@@ -81,5 +84,4 @@ export default function IndexRoutes(){
 
       </div>
   )
-
 }

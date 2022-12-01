@@ -5,8 +5,8 @@ import { useState } from "react";
 import { useCart } from "~/hooks/useCart";
 import { ActionFunction, json } from "@remix-run/node";
 import { useLoaderData, useActionData } from "@remix-run/react";
-import { getSession, commitSession } from "~/utils/items-session";
 import { PrismaClient} from "@prisma/client";
+import { getStorage } from "~/utils/auth.server";
 
 
 
@@ -23,18 +23,16 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
   //looking for orders assigned to current customer
   const orders = await prisma.orders.findMany({
     where: {
-      customerID: 2,
+      customerID: 1,
     },
   });
-  console.log(prisma.orders);
   console.log("boolean orders", orders.length == 0);
-  console.log("orders", orders)
 
   //if there's no orders, make a new order
   if(orders.length == 0){
     const newOrder = await prisma.orders.create({
       data: {
-        customerID: 2,
+        customerID: 1,
       }
     });
     
@@ -43,7 +41,7 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
   //find if there's already a basket order (hasCheckedOut should be false)
   let basketOrder = await prisma.orders.findMany({
     where: {
-      customerID: 2,
+      customerID: 1,
       hasCheckedOut: false
     }
   })
@@ -53,19 +51,19 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
     if(basketOrder.length == 0){
       let newOrder = await prisma.orders.create({
         data: {
-          customerID: 2,
+          customerID: 1,
         },
       });
 
     //pull basket order from the database
     basketOrder = await prisma.orders.findMany({
       where: {
-        customerID: 2,
+        customerID: 1,
         hasCheckedOut: false
       }
     });
     }
-
+    console.log("basket order", basketOrder);
     //find the currently added item
     const item = await prisma.products.findMany({
       where:{
@@ -98,13 +96,15 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
       })
     //if the item is in the basket, find how many there are and increase the quantity by 1
     }else{
+      const newPrice = orderItems[0].price + item[0].productPrice;
       quantity = orderItems[0].quantity
       const updateItem = await prisma.orderItems.update({
         where: {
           orderItemID: orderItems[0].orderItemID
         },
         data:{
-          quantity: quantity+1
+          quantity: quantity+1,
+          price: newPrice,
         }
       })
     }
@@ -117,6 +117,14 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
 }
 
 export const loader = async ({ request }: { request: Request }) => {
+  const session = await getStorage().getSession(request.headers.get("Cookie"));
+  console.log(session.get("cookie-session"));
+  if(session.has("userID")){
+    console.log("Logged in!");
+  }
+  else{
+    console.log("Not logged in :(");
+  }
   const prisma = new PrismaClient();
   const allUsers = await prisma.customers.findMany();
   const allOrders = await prisma.orderItems.findMany();
