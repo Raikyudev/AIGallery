@@ -26,9 +26,7 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
       customerID: 1,
     },
   });
-  console.log(prisma.orders);
   console.log("boolean orders", orders.length == 0);
-  console.log("orders", orders)
 
   //if there's no orders, make a new order
   if(orders.length == 0){
@@ -65,7 +63,7 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
       }
     });
     }
-
+    console.log("basket order", basketOrder);
     //find the currently added item
     const item = await prisma.products.findMany({
       where:{
@@ -98,13 +96,15 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
       })
     //if the item is in the basket, find how many there are and increase the quantity by 1
     }else{
+      const newPrice = orderItems[0].price + item[0].productPrice;
       quantity = orderItems[0].quantity
       const updateItem = await prisma.orderItems.update({
         where: {
           orderItemID: orderItems[0].orderItemID
         },
         data:{
-          quantity: quantity+1
+          quantity: quantity+1,
+          price: newPrice,
         }
       })
     }

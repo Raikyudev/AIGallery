@@ -55,7 +55,7 @@ export const Navbar = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="/aboutUs"
                 className=" block py-2 pr-4 pl-3 text-white rounded hover:bg-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-black dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Our Story
@@ -71,7 +71,7 @@ export const Navbar = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="/login"
                 className="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-black dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Sign In
