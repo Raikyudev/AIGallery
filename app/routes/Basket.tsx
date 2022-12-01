@@ -125,10 +125,10 @@ export const loader = async ({ request }: { request: Request }) => {
   await prisma.$disconnect();
 
   return json({
-    "users": allUsers,
-    "orders": allOrders,
-    "products": allProducts,
-    "orderItems": allOrderItems,
+    users: allUsers,
+    orders: allOrders,
+    products: allProducts,
+    orderItems: allOrderItems,
   });
 };
 
@@ -139,13 +139,13 @@ export default function Basket() {
   console.log(data);
   const orderItems = data.orderItems;
   const orderArray: React.ReactElement[] = [];
-  
+
   for (let i: number = 0; i < orderItems.length; i++) {
     let artName = "";
     let price = 0;
     let size = "";
-    for(let j: number = 0; j < data.products.length; j++){
-      if(orderItems[i].productId == data.products[j].productID){
+    for (let j: number = 0; j < data.products.length; j++) {
+      if (orderItems[i].productId == data.products[j].productID) {
         console.log("product name", data.products[j].productName);
         artName = data.products[j].productName;
         price = data.products[j].productPrice;
@@ -154,47 +154,24 @@ export default function Basket() {
       }
     }
     console.log("art name", artName);
-    orderArray[i] = 
-      <BasketItem
-        key={i}
-        price={price}
-        art_name={artName}
-        size={size}
-      />
+    orderArray[i] = (
+      <BasketItem key={i} price={price} art_name={artName} size={size} />
+    );
   }
   const actionData = useActionData();
   console.log("action", actionData);
 
   return (
-    <div>
+    <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
       <Navbar />
-      <div className="text-3xl font-bold mt-5 mx-10 w-1/2 border-b border-solid border-1 border-black pb-5">
-        <h1>Your Basket</h1>
+      <div className="text-3xl font-bold mt-5 mx-10 w-1/2 border-b border-solid border-1 border-white pb-5">
+        <h1 className="text-white">Your Basket</h1>
       </div>
       <div className="flex flex-row items-center  mt-20 ">
         <div className="flex flex-col items-left  mx-8">{orderArray}</div>
-        <div className="flex flex-col items-left  mx-8">
-          <p className="text-xl font-raleway, p-4 font-bold flex flex-col">
-            Name
-          </p>
-        </div>
+        <div className="flex flex-col items-left  mx-8"></div>
       </div>
-      <div className="mt-20 mx-10 border-b  border-solid border-black border-1 w-1/2"></div>
-      <div className="flex flex-row items-center  mt-20 ">
-        <div className="flex flex-col items-left  mx-8">
-          <img
-            src={bg}
-            alt="ai"
-            className="md:w-80 md:h-80 w-32 h-32 rounded-lg"
-          />
-        </div>
-        <div className="flex flex-col items-left  mx-8">
-          <p className="text-xl font-raleway, p-4 font-bold flex flex-col">
-            Name
-          </p>
-        </div>
-      </div>
-      <div className="mt-20 mx-10 border-b  border-solid border-black border-1 w-1/2"></div>
+      <div className="mt-20 mx-10 border-b  border-solid border-white border-1 w-1/2"></div>
       <div className="mt-44">
         <Footer />
       </div>

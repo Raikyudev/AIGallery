@@ -42,9 +42,7 @@ export const BasketItem = (props: {
           <div>
             <div className="ml-2 flex flex-col items-start w-60 md:w-72 mb-1">
               <p className="font-bold text-white">{artName}</p>
-              <p className="font-bold text-white">
-                Price: £{props.price}
-              </p>
+              <p className="font-bold text-white">Price: £{props.price}</p>
             </div>
             <div className="flex gap-2 mb-4 h-20 items-center ml-2">
               <p className="font-bold text-white">Size: {props.size} </p>
@@ -58,10 +56,25 @@ export const BasketItem = (props: {
             </div>
 
             <button
-              className="font-bold bg-white text-black px-10 w-60 h-10 md:w-72 md:h-10 ml-1 md:ml-2"
-              type="submit"
+              type="button"
+              className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
             >
-              Add to basket
+              <span className="sr-only">Remove Item</span>
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
             </button>
           </div>
         )}
