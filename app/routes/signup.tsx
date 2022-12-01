@@ -38,7 +38,7 @@ export async function action({request}){
   });
   await prisma.$disconnect();
   return true;
-
+}
 export default function IndexRoutes(){
   const projects = useLoaderData();
   const { state } = useTransition();

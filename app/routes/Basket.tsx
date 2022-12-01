@@ -24,9 +24,9 @@ export const action: ActionFunction = async ({
       const productID: number = +product;
       console.log("product type", typeof productID);
       console.log("productID", productID);
-      const deleteOrderItem = await prisma.orderItems.delete({
+      const deleteOrderItem = await prisma.orderItems.deleteMany({
         where: {
-          productId: productID,
+          productId: productID
         },
       });
       console.log(deleteOrderItem);
