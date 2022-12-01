@@ -26,7 +26,7 @@ export const BasketItem = (props: {
   const artName = artNameArray.join(" ").toUpperCase();
 
   return (
-    <Form method="post" action="/checkout" name="basketItemForm">
+    <Form method="post" action="/basket" name="basketItemForm">
       <div
         onMouseLeave={closeMenu}
         onMouseEnter={displayMenu}

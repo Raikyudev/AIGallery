@@ -3,7 +3,7 @@ import bg from "~/assets/mountain_guardian.jpg";
 import { Footer } from "~/components/Footer";
 import { PrismaClient } from "@prisma/client";
 import { ActionFunction, json } from "@remix-run/node";
-import { useActionData, useLoaderData } from "@remix-run/react";
+import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import { BasketItem } from "~/components/BasketItem";
 
 export const action: ActionFunction = async ({
@@ -168,7 +168,24 @@ export default function Basket() {
         <h1 className="text-white">Your Basket</h1>
       </div>
       <div className="flex flex-row items-center  mt-20 ">
-        <div className="flex flex-col items-left  mx-8">{orderArray}</div>
+        <div className="flex flex-col items-left  mx-8">
+          <Form method="post" action="/checkout" name="basketItemForm">
+            {orderArray}
+
+            <input
+              className="font-bold bg-white text-black px-10 w-60 h-10 md:w-72 md:h-10 ml-1 md:ml-2"
+              type="submit"
+              name="submitType"
+              value="removeAll"
+            />
+            <input
+              className="font-bold bg-white text-black px-10 w-60 h-10 md:w-72 md:h-10 ml-1 md:ml-2"
+              type="submit"
+              name="submitType"
+              value="checkout"
+            />
+          </Form>
+        </div>
         <div className="flex flex-col items-left  mx-8"></div>
       </div>
       <div className="mt-20 mx-10 border-b  border-solid border-white border-1 w-1/2"></div>
