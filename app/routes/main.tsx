@@ -23,7 +23,7 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
   //looking for orders assigned to current customer
   const orders = await prisma.orders.findMany({
     where: {
-      customerID: 2,
+      customerID: 1,
     },
   });
   console.log(prisma.orders);
@@ -34,7 +34,7 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
   if(orders.length == 0){
     const newOrder = await prisma.orders.create({
       data: {
-        customerID: 2,
+        customerID: 1,
       }
     });
     
@@ -43,7 +43,7 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
   //find if there's already a basket order (hasCheckedOut should be false)
   let basketOrder = await prisma.orders.findMany({
     where: {
-      customerID: 2,
+      customerID: 1,
       hasCheckedOut: false
     }
   })
@@ -53,14 +53,14 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
     if(basketOrder.length == 0){
       let newOrder = await prisma.orders.create({
         data: {
-          customerID: 2,
+          customerID: 1,
         },
       });
 
     //pull basket order from the database
     basketOrder = await prisma.orders.findMany({
       where: {
-        customerID: 2,
+        customerID: 1,
         hasCheckedOut: false
       }
     });
