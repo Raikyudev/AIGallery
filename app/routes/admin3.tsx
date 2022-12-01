@@ -13,6 +13,13 @@ const orders = [
   {orderID: "2", customerID: "1", orderDate: "2021-01-01T02:07:14.000Z", paymentDate: "2021-01-01T02:07:14.000Z", hasCheckedOut: "false"}
 ]
 
+const products = [
+  {productID: "4", productName: "airobot", productPrice: "34.99", productSize: "S"},
+  {productID: "5", productName: "airobot", productPrice: "44.99", productSize: "M"},
+  {productID: "6", productName: "airobot", productPrice: "54.99", productSize: "L"},
+  {productID: "7", productName: "airobot", productPrice: "64.99", productSize: "XL"},
+]
+
 const Row = (props) => {
   const {customerID, customerLastName, customerFirstName, phoneNumber, email, password, role, username} = props
   return (<tr>
@@ -79,9 +86,23 @@ const Table2 = (props2) => {
   </table>)
 }
 
+const Table3 = (props3) => {
+  const {data} = props3
+  return(<table>
+    <tbody>
+      {data.map(rows3 =>
+        <Row3 productID = {rows3.productID}
+        productName = {rows3.productName}
+        productPrice = {rows3.productPrice}
+        productSize = {rows3.productSize}/>)}
+    </tbody>
+  </table>)
+}
+
 export default function admin()  {
   const [rows, setRows] = useState(customers)
   const [rows2, setRows2] = useState(orders)
+  const [rows3, setRows3] = useState(products)
     return (
         <div>
           <Navbar />
@@ -111,6 +132,11 @@ export default function admin()  {
         Products in Stock
         </h1>
         <hr></hr>
-          </div>
+
+        <div className="flex flex-row items-center justify-center">
+        <Table3 data = {rows3}/>
+        </div>
+
+        </div>
   );
 };
