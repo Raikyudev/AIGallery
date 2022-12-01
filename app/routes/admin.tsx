@@ -5,7 +5,7 @@ const admin = () => {
         <div>
           <Navbar />
           <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
-        Live customers
+        Live Customers
         </h1>
         <hr></hr>
         <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
