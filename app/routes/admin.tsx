@@ -46,7 +46,10 @@ export default function admin()  {
         <div>
           <Navbar />
 
-          <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
+        <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">Admin Page</h1>
+        <br></br>
+
+        <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
         Customers
         </h1>
         <hr></hr>
