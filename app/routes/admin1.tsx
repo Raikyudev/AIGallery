@@ -7,7 +7,7 @@ import Table from "~/assets/Table";
 const admin = () => {
 
     const [query, setQuery] = useState("");
-    const keys = ["first_name","last_name","email"]
+    const keys = ["first_name","last_name","email","phone","role","username"]
 
     const search =(data) => {
         return data.filter((item) =>
@@ -30,6 +30,7 @@ const admin = () => {
           <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
           Orders
           </h1>
+          
           <hr></hr>
           <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
           Products in Stock
