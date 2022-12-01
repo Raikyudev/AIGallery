@@ -2,7 +2,7 @@ import {Layout} from "~/components/layout"
 import {FormField} from "~/components/form-field"
 import { useState, useEffect, useRef } from 'react'
 import { ActionFunction, json } from "@remix-run/node";
-import { validateEmail, validatePassword, validateName, validatePhoneNumber, validateUsername } from "~/utils/validators.server";
+import { validateEmail, validatePassword, validateName, validateUsername } from "~/utils/validators.server";
 import { login, register } from "~/utils/auth.server";
 import { useActionData } from "@remix-run/react";
 
@@ -27,7 +27,6 @@ export const action: ActionFunction = async({request}) => {
   const errors = {
     email: validateEmail(email),
     password: validatePassword(password),
-    phoneNumber: validatePhoneNumber(phoneNumber),
     username: validateUsername(username),
     ...(action === 'register'
       ? {

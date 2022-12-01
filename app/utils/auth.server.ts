@@ -40,16 +40,16 @@ export async function register(user: RegisterForm) {
 }
 export const  login = async (form: LoginForm) => {
         
-    const user = await prisma.customers.findMany({
+    const user = await prisma.customers.findUnique({
       where: { email: form.email},
     })
   
     
-    if (!user || !(await bcrypt.compare(form.password, user[0].password)))
+    if (!user || !(await bcrypt.compare(form.password, user.password)))
       return json({ error: `Incorrect login` }, { status: 400 })
 
     
-    return createUserSession(String(user[0].customerID),'/')
+    return createUserSession(String(user.customerID),'/')
 }
 
 export const createUserSession = async(userID: string, redirectTo: string) => {

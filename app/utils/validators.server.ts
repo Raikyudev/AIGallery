@@ -14,9 +14,6 @@ export const validateEmail = (email: string): string | undefined => {
   export const validateName = (name: string): string | undefined => {
     if (!name.length) return `Please enter a characters from the alphabet`
   }
-  export const validatePhoneNumber = (phoneNumber: string): string | undefined => {
-    if (!phoneNumber.length) return `Please enter a number`
-  }
   export const validateUsername = (username: string): string | undefined => {
     if (!username.length) return `Please enter a valid username`
   }
