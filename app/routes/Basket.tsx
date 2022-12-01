@@ -173,13 +173,13 @@ export default function Basket() {
             {orderArray}
 
             <input
-              className="font-bold bg-white text-black px-10 w-60 h-10 md:w-72 md:h-10 ml-1 md:ml-2"
+              className="font-bold bg-white text-black px-10 w-60 h-10  md:h-10 ml-1 md:ml-2 rounded-lg mt-5 "
               type="submit"
               name="submitType"
               value="removeAll"
             />
             <input
-              className="font-bold bg-white text-black px-10 w-60 h-10 md:w-72 md:h-10 ml-1 md:ml-2"
+              className="font-bold bg-white text-black px-10 w-60 h-10 md:h-10 ml-1 md:ml-2 rounded-lg mt-5"
               type="submit"
               name="submitType"
               value="checkout"
