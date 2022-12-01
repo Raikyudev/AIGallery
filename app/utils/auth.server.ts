@@ -43,13 +43,19 @@ export const  login = async (form: LoginForm) => {
     const user = await prisma.customers.findUnique({
       where: { email: form.email},
     })
-  
+    alert(user);
     
-    if (!user || !(await bcrypt.compare(form.password, user.password)))
+    if (!user){
       return json({ error: `Incorrect login` }, { status: 400 })
-
+    }
+    await bcrypt.compare(form.password, user.password, function(err,result){
+      if(result == false){
+        return json({ error: `Incorrect login` }, { status: 400 })
+      }else{
+        return createUserSession(String(user.customerID),'/')
+      }
+    })
     
-    return createUserSession(String(user.customerID),'/')
 }
 
 export const createUserSession = async(userID: string, redirectTo: string) => {
