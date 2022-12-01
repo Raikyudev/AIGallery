@@ -11,7 +11,7 @@ export const BasketItem = (props: {
   price: number;
   art_name: string;
   size: string;
-  productID: number
+  productID: number;
 }) => {
   const displayMenu = () => {
     setIsShown((current) => !current);
@@ -54,7 +54,6 @@ export const BasketItem = (props: {
                 name="productID"
                 value={props.productID}
               />
-              
             </div>
 
             <button
