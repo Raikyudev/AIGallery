@@ -34,20 +34,18 @@ export const action: ActionFunction = async ({
     } else {
       return false;
     }
-    
-    
-  } else if(submitType === "removeAll"){
+  } else if (submitType === "removeAll") {
     const currentCustomerID = 1;
     let currentOrder = await prisma.orders.findMany({
-      where:{
+      where: {
         customerID: currentCustomerID,
         hasCheckedOut: false,
-      }
+      },
     });
     const deleteAllOrderItems = await prisma.orderItems.deleteMany({
-      where:{
-        orderID: currentOrder[0].orderID
-      }
+      where: {
+        orderID: currentOrder[0].orderID,
+      },
     });
   } else if (submitType === "checkout") {
     const currentCustomerID = 1;
@@ -57,7 +55,7 @@ export const action: ActionFunction = async ({
         hasCheckedOut: false,
       },
     });
-    console.log("current order iD", currentOrder)
+    console.log("current order iD", currentOrder);
     const checkout = await prisma.orders.update({
       where: {
         orderID: currentOrder[0].orderID,
@@ -111,7 +109,7 @@ export default function Basket() {
   const data = useLoaderData();
   if (data === false) {
     return (
-      <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
+      <div>
         <Navbar />
         <div>
           <h1 className="text-center">
@@ -144,6 +142,7 @@ export default function Basket() {
         art_name={artName}
         size={size}
         productID={orderItems[i].productId}
+        quantity={orderItems[i].quantity}
       />
     );
   }
@@ -151,33 +150,31 @@ export default function Basket() {
   console.log("action", actionData);
 
   return (
-    <div className="h-screen bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
+    <div className="h-screen">
       <Navbar />
-      <div className="text-3xl font-bold mt-5 mx-10 w-1/2 border-b border-solid border-1 border-white pb-5">
-        <h1 className="text-white">Your Basket</h1>
+      <div className="text-3xl font-bold mt-5 mx-10 w-1/2 border-b border-solid border-1 border-black pb-5">
+        <h1 className="">Your Basket</h1>
       </div>
       <div className="flex flex-row items-center  mt-20 ">
         <div className="flex flex-col items-left  mx-8">
-          <Form method="post" action="/basket" name="basketItemForm">
+          
             {orderArray}
-
+            <Form method="post" action="/basket" name="basketItemForm">
             <input
-              className="font-bold bg-white text-black px-10 w-60 h-10  md:h-10 ml-1 md:ml-2 rounded-lg mt-5 hover:cursor-pointer "
+              className="font-bold bg-black text-white px-10 w-60 h-10  md:h-10 ml-1 md:ml-2 rounded-lg mt-5 hover:cursor-pointer "
               type="submit"
               name="submitType"
               value="removeAll"
             />
             <input
-              className="font-bold bg-white text-black px-10 w-60 h-10 md:h-10 ml-1 md:ml-2 rounded-lg mt-5 hover:cursor-pointer"
+              className="font-bold bg-black text-white px-10 w-60 h-10 md:h-10 ml-1 md:ml-2 rounded-lg mt-5 hover:cursor-pointer"
               type="submit"
               name="submitType"
               value="checkout"
             />
           </Form>
         </div>
-        <div className="flex flex-col items-left  mx-8"></div>
       </div>
-      <div className="mt-20 mx-10 border-b  border-solid border-white border-1 w-1/2"></div>
       <div className="mt-44">
         <Footer />
       </div>
