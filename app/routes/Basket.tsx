@@ -141,22 +141,24 @@ export default function Basket() {
   const orderArray: React.ReactElement[] = [];
   
   for (let i: number = 0; i < orderItems.length; i++) {
-    let art_name = "";
+    let artName = "";
     let price = 0;
     let size = "";
     for(let j: number = 0; j < data.products.length; j++){
-      if(orderItems[i].productID == data.products[j].productID){
-        art_name = data.products[j].productName;
+      if(orderItems[i].productId == data.products[j].productID){
+        console.log("product name", data.products[j].productName);
+        artName = data.products[j].productName;
         price = data.products[j].productPrice;
         size = data.products[j].productSize;
         break;
       }
     }
+    console.log("art name", artName);
     orderArray[i] = 
       <BasketItem
         key={i}
         price={price}
-        art_name={art_name}
+        art_name={artName}
         size={size}
       />
   }
