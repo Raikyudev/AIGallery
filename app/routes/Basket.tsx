@@ -158,9 +158,9 @@ export default function Basket() {
       </div>
       <div className="flex flex-row items-center  mt-20 ">
         <div className="flex flex-col items-left  mx-8">
-          <Form method="post" action="/basket" name="basketItemForm">
+          
             {orderArray}
-
+            <Form method="post" action="/basket" name="basketItemForm">
             <input
               className="font-bold bg-white text-black px-10 w-60 h-10  md:h-10 ml-1 md:ml-2 rounded-lg mt-5 hover:cursor-pointer "
               type="submit"
