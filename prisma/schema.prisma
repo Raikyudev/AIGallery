@@ -9,10 +9,10 @@ datasource db {
 }
 
 model Products {
-  productID    Int         @id @default(autoincrement())
-  productName  String      @db.VarChar(50)
+  productID    Int          @id @default(autoincrement())
+  productName  String       @db.VarChar(50)
   productPrice Float
-  productSize  String      @db.VarChar(20)
+  productSize  String       @db.VarChar(20)
   OrderItems   OrderItems[]
 }
 
@@ -42,7 +42,7 @@ model Orders {
 
 model OrderItems {
   orderItemID Int      @id @default(autoincrement())
-  productId   Int      
+  productId   Int
   quantity    Int
   price       Float
   orderID     Int
