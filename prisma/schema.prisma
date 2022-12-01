@@ -20,7 +20,7 @@ model Customers {
   customerID        Int      @id @default(autoincrement())
   customerLastName  String   @unique @db.VarChar(50)
   customerFirstName String   @db.VarChar(50)
-  phoneNumber       Int
+  phoneNumber       BigInt
   email             String   @unique @db.VarChar(100)
   password          String   @db.VarChar(300)
   role              String   @default("USER") @db.VarChar(20)
