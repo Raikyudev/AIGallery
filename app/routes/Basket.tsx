@@ -14,105 +14,12 @@ export const action: ActionFunction = async ({
   //setting form data
   //
   const formData = await request.formData();
-  const size = String(formData.get("size"));
-  const artName = String(formData.get("artName"));
+  const submitType = formData.get("submitType");
 
-  const prisma = new PrismaClient();
-
-  //looking for orders assigned to current customer
-  const orders = await prisma.orderItems.findMany({
-    where: {
-      orderID: 1,
-    },
-  });
-  console.log(prisma.orderItems);
-  console.log("boolean orders", orders.length == 0);
-  console.log("orders", orders);
-
-  //if there's no orders, make a new order
-  if (orders.length == 0) {
-    const newOrder = await prisma.orders.create({
-      data: {
-        customerID: 1,
-      },
-    });
-  }
-
-  //find if there's already a basket order (hasCheckedOut should be false)
-  let basketOrder = await prisma.orders.findMany({
-    where: {
-      customerID: 1,
-      hasCheckedOut: false,
-    },
-  });
-  console.log("basket length boolean", basketOrder.length == 0);
-
-  //if there's no basket orders, create one
-  if (basketOrder.length == 0) {
-    let newOrder = await prisma.orders.create({
-      data: {
-        customerID: 1,
-      },
-    });
-
-    //pull basket order from the database
-    basketOrder = await prisma.orders.findMany({
-      where: {
-        customerID: 1,
-        hasCheckedOut: false,
-      },
-    });
-  }
-
-  //find the currently added item
-  const item = await prisma.products.findMany({
-    where: {
-      productName: artName,
-      productSize: size,
-    },
-  });
-
-  let quantity = 0;
-
-  //find if the item is already in the basket
-  let orderItems: any = [];
-  orderItems = await prisma.orderItems.findMany({
-    where: {
-      productId: item[0].productID,
-      orderID: basketOrder[0].orderID,
-    },
-  });
-
-  //if the item isn't in the basket, make a new orderItem and add it to the basket
-  if (orderItems.length == 0) {
-    quantity = 1;
-    orderItems = await prisma.orderItems.create({
-      data: {
-        productId: item[0].productID,
-        quantity: quantity,
-        price: item[0].productPrice,
-        orderID: basketOrder[0].orderID,
-      },
-    });
-    //if the item is in the basket, find how many there are and increase the quantity by 1
-  } else {
-    quantity = orderItems[0].quantity;
-    const updateItem = await prisma.orderItems.update({
-      where: {
-        orderItemID: orderItems[0].orderItemID,
-      },
-      data: {
-        quantity: quantity + 1,
-      },
-    });
-  }
-
-  console.log("basket order end", basketOrder);
-  console.log("orderItems end", orderItems);
-
-  await prisma.$disconnect();
-  return basketOrder;
 };
+
+
+
 
 export const loader = async ({ request }: { request: Request }) => {
   const prisma = new PrismaClient();
