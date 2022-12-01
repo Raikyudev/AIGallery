@@ -16,6 +16,8 @@ export const action: ActionFunction = async({request}) => {
   let lastName = form.get('lastName')
   const username = form.get('username')
   let phoneNumber = form.get('phoneNumber')
+
+  
   if (typeof action !== 'string' || typeof email !== 'string' || typeof password !== 'string' || typeof username !== 'string' || typeof phoneNumber !== 'string') {
     return json({ error: `Invalid Form Data`, form: action }, { status: 400 })
   }
@@ -46,8 +48,7 @@ export const action: ActionFunction = async({request}) => {
       case 'register': {
           firstName = firstName as string
           lastName = lastName as string
-          phoneNumber = phoneNumber as string
-          return await register({ email, password, firstName, lastName,  })
+          return await register({ email, password, firstName, lastName, phoneNumber, username  })
       }
       default:
           return json({ error: `Invalid Form Data` }, { status: 400 });
