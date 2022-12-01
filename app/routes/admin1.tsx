@@ -7,7 +7,7 @@ import Table from "~/assets/Table";
 const admin = () => {
 
     const [query, setQuery] = useState("");
-    const keys = ["first_name","last_name","email","phone","role","username"]
+    const keys = ["first_name","last_name","email","phone","role","username","customerid"]
 
     const search =(data) => {
         return data.filter((item) =>

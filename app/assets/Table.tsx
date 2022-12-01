@@ -3,6 +3,7 @@ const Table = ({ data }) => {
       <table>
         <tbody>
           <tr>
+          <th>Customer ID</th>
             <th>Name</th>
             <th>Surname</th>
             <th>Email</th>
@@ -12,6 +13,7 @@ const Table = ({ data }) => {
           </tr>
           {data.map((item) => (
             <tr key={item.id}>
+              <td>{item.customerid}</td>
               <td>{item.first_name}</td>
               <td>{item.last_name}</td>
               <td>{item.email}</td>

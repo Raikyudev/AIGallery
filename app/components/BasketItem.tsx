@@ -8,6 +8,7 @@ import { PrismaClient } from "@prisma/client";
 import { useSubmit, useTransition } from "@remix-run/react";
 
 export const BasketItem = (props: {
+  quantity: number;
   price: number;
   art_name: string;
   size: string;
@@ -32,7 +33,7 @@ export const BasketItem = (props: {
         onMouseLeave={closeMenu}
         onMouseEnter={displayMenu}
         className={`${
-          isShown && "border-white border-2 shadow-inner"
+          isShown && "border-black border-2 shadow-inner"
         } flex flex-col items-center w-64 md:w-96 pt-2 pb-2  transition ease-in-out hover:scale-105 duration-1000`}
       >
         <img
@@ -42,11 +43,12 @@ export const BasketItem = (props: {
         {isShown && (
           <div>
             <div className="ml-2 flex flex-col items-start w-60 md:w-72 mb-1">
-              <p className="font-bold text-white">{artName}</p>
-              <p className="font-bold text-white">Price: £{props.price}</p>
+              <p className="font-bold">{artName}</p>
+              <p className="font-bold ">Price: £{props.price}</p>
+              <p className="font-bold ">Quantity: {props.quantity}</p>
             </div>
-            <div className="flex gap-2 mb-4 h-20 items-center ml-2">
-              <p className="font-bold text-white">Size: {props.size} </p>
+            <div className="flex gap-2 mb-4 items-center ml-2">
+              <p className="font-bold">Size: {props.size} </p>
 
               <input
                 type="hidden"
@@ -58,7 +60,7 @@ export const BasketItem = (props: {
 
             <button
               type="submit"
-              className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="bg-black rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
               name="submitType"
               value="delete"
             >
@@ -82,6 +84,7 @@ export const BasketItem = (props: {
           </div>
         )}
       </div>
+      <div className="mt-20 mx-10 border-b  border-solid border-white border-1 w-1/2"></div>
     </Form>
   );
 };
