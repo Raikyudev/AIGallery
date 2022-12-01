@@ -13,48 +13,46 @@ export const action: ActionFunction = async ({
 }) => {
   //setting form data
   //
-  
+
   const formData = await request.formData();
   const submitType = formData.get("submitType");
   console.log("submit type", submitType);
   const product = formData.get("productID");
   const prisma = new PrismaClient();
-  
-  if(submitType === "delete"){
-    if(product){
-      const productID: number = + product;
-      console.log("product type", typeof(productID));
+
+  if (submitType === "delete") {
+    if (product) {
+      const productID: number = +product;
+      console.log("product type", typeof productID);
       console.log("productID", productID);
       const deleteOrderItem = await prisma.orderItems.delete({
-        where:{
-          productId: productID
-        }
-      })
+        where: {
+          productId: productID,
+        },
+      });
       console.log(deleteOrderItem);
-    } else{
+    } else {
       return false;
     }
-    
-    
-  } else if(submitType === "removeAll"){
+  } else if (submitType === "removeAll") {
     const deleteAllOrderItems = await prisma.orderItems.deleteMany({});
   } else if (submitType === "checkout") {
     const currentCustomerID = 1;
     let currentOrder = await prisma.orders.findMany({
-      where:{
+      where: {
         customerID: currentCustomerID,
         hasCheckedOut: false,
-      }
+      },
     });
-    console.log("current order it", currentOrder)
+    console.log("current order it", currentOrder);
     const checkout = await prisma.orders.update({
       where: {
-        orderID: currentOrder[0].orderID
+        orderID: currentOrder[0].orderID,
       },
       data: {
-        hasCheckedOut: true
-      }
-    })
+        hasCheckedOut: true,
+      },
+    });
   }
   return true;
 };
@@ -64,25 +62,23 @@ export const loader = async ({ request }: { request: Request }) => {
   const allUsers = await prisma.customers.findMany();
   const allOrders = await prisma.orders.findMany();
   const allProducts = await prisma.products.findMany();
- 
 
   const currentOrderArray = await prisma.orders.findMany({
-    where:{
+    where: {
       customerID: 1,
-      hasCheckedOut: false
-    }
-  })
+      hasCheckedOut: false,
+    },
+  });
 
-  if(currentOrderArray.length == 0){
+  if (currentOrderArray.length == 0) {
     return false;
   }
   console.log("order array", currentOrderArray);
-  
 
   const allOrderItems = await prisma.orderItems.findMany({
-    where:{
-      orderID: currentOrderArray[0].orderID
-    }
+    where: {
+      orderID: currentOrderArray[0].orderID,
+    },
   });
 
   await prisma.$disconnect();
@@ -92,7 +88,7 @@ export const loader = async ({ request }: { request: Request }) => {
     orders: allOrders,
     products: allProducts,
     orderItems: allOrderItems,
-    currentOrder: currentOrderArray[0]
+    currentOrder: currentOrderArray[0],
   });
 };
 
@@ -100,18 +96,22 @@ export const loader = async ({ request }: { request: Request }) => {
 
 export default function Basket() {
   const data = useLoaderData();
-  if(data === false){
-    return(
-      <div> 
+  if (data === false) {
+    return (
+      <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
         <Navbar />
-        <div>No items</div>
+        <div>
+          <h1 className="text-center">
+            Your basket is empty. Please add some items to your basket before
+          </h1>
+        </div>
       </div>
-    )
-}
+    );
+  }
   const currentOrderID = data.currentOrder.orderID;
   const orderItems = data.orderItems;
   const orderArray: React.ReactElement[] = [];
-  
+
   for (let i: number = 0; i < orderItems.length; i++) {
     let artName = "";
     let price = 0;
@@ -125,14 +125,20 @@ export default function Basket() {
       }
     }
     orderArray[i] = (
-      <BasketItem key={i} price={price} art_name={artName} size={size} productID = {orderItems[i].productId} />
+      <BasketItem
+        key={i}
+        price={price}
+        art_name={artName}
+        size={size}
+        productID={orderItems[i].productId}
+      />
     );
   }
   const actionData = useActionData();
   console.log("action", actionData);
 
   return (
-    <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
+    <div className="h-screen bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
       <Navbar />
       <div className="text-3xl font-bold mt-5 mx-10 w-1/2 border-b border-solid border-1 border-white pb-5">
         <h1 className="text-white">Your Basket</h1>
