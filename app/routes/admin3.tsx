@@ -79,20 +79,6 @@ const Table2 = (props2) => {
   </table>)
 }
 
-const Table2 = (props2) => {
-  const {data} = props2
-  return(<table>
-    <tbody>
-      {data.map(rows2 =>
-        <Row2 orderID = {rows2.orderID}
-        customerID = {rows2.customerID}
-        orderDate = {rows2.orderDate}
-        paymentDate = {rows2.paymentDate}
-        hasCheckedOut = {rows2.hasCheckedOut}/>)}
-    </tbody>
-  </table>)
-}
-
 export default function admin()  {
   const [rows, setRows] = useState(customers)
   const [rows2, setRows2] = useState(orders)
