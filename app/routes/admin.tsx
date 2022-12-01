@@ -1,8 +1,6 @@
-import Grid from "~/components/Grid"
-import { Navbar } from "~/components/Navbar"
-
+import { Navbar } from "../components/Navbar";
 import { useState } from 'react'
-const customer = [1,2,3]
+
 const customers = [
   {name: "Ayush", username: " ayush1243"},
   {name: "avjit", username: " avjit748"},
@@ -29,6 +27,8 @@ const Table = (props) => {
 }
 
 const admin = () => {
+  const [rows, setRows] = useState(customers)
+
     return (
         <div>
           <Navbar />
@@ -36,6 +36,8 @@ const admin = () => {
         Customers
         </h1>
         <hr></hr>
+        <Table data = {rows}/>
+
         <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
         Orders
         </h1>
