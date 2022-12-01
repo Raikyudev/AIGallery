@@ -34,8 +34,21 @@ export const action: ActionFunction = async ({
     } else {
       return false;
     }
-  } else if (submitType === "removeAll") {
-    const deleteAllOrderItems = await prisma.orderItems.deleteMany({});
+    
+    
+  } else if(submitType === "removeAll"){
+    const currentCustomerID = 1;
+    let currentOrder = await prisma.orders.findMany({
+      where:{
+        customerID: currentCustomerID,
+        hasCheckedOut: false,
+      }
+    });
+    const deleteAllOrderItems = await prisma.orderItems.deleteMany({
+      where:{
+        orderID: currentOrder[0].orderID
+      }
+    });
   } else if (submitType === "checkout") {
     const currentCustomerID = 1;
     let currentOrder = await prisma.orders.findMany({
@@ -44,7 +57,7 @@ export const action: ActionFunction = async ({
         hasCheckedOut: false,
       },
     });
-    console.log("current order it", currentOrder);
+    console.log("current order iD", currentOrder)
     const checkout = await prisma.orders.update({
       where: {
         orderID: currentOrder[0].orderID,

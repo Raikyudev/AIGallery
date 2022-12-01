@@ -26,9 +26,7 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
       customerID: 1,
     },
   });
-  console.log(prisma.orders);
   console.log("boolean orders", orders.length == 0);
-  console.log("orders", orders)
 
   //if there's no orders, make a new order
   if(orders.length == 0){

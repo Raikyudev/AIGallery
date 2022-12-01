@@ -23,9 +23,18 @@ const admin = () => {
             <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
           Customers
           </h1>
-          <input type="text" placeholder="search..." className="search" onChange={(e) => setQuery(e.target.value)}/>
-          <Table data={search(Users)}/>
           <hr></hr>
+
+          <br></br>
+
+          <div className="flex flex-row items-center justify-center">
+          <input type="text" placeholder="search..." className="search" onChange={(e) => setQuery(e.target.value)}/>
+          </div>
+          <br></br>
+          <div className="flex flex-row items-center justify-center">
+          <Table data={search(Users)}/>
+          </div>
+
   
           <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
           Orders
