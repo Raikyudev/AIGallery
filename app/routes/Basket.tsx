@@ -13,8 +13,49 @@ export const action: ActionFunction = async ({
 }) => {
   //setting form data
   //
+  
   const formData = await request.formData();
   const submitType = formData.get("submitType");
+  console.log("submit type", submitType);
+  const product = formData.get("productID");
+  const prisma = new PrismaClient();
+  
+  if(submitType === "delete"){
+    if(product){
+      const productID: number = + product;
+      console.log("product type", typeof(productID));
+      console.log("productID", productID);
+      const deleteOrderItem = await prisma.orderItems.delete({
+        where:{
+          productId: productID
+        }
+      })
+      console.log(deleteOrderItem);
+    } else{
+      return false;
+    }
+    
+    
+  } else if(submitType === "removeAll"){
+    const deleteAllOrderItems = await prisma.orderItems.deleteMany({});
+  } else {
+    const currentCustomerID = 1;
+    const currentOrderID = await prisma.orders.findMany({
+      where:{
+        customerID: currentCustomerID,
+        hasCheckedOut: false,
+      }
+    })[0].orderID;
+    const checkout = await prisma.orders.update({
+      where: {
+        orderID: currentOrderID
+      },
+      data: {
+        hasCheckedOut: true
+      }
+    })
+  }
+  return true;
 };
 
 export const loader = async ({ request }: { request: Request }) => {
@@ -23,7 +64,7 @@ export const loader = async ({ request }: { request: Request }) => {
   const allOrders = await prisma.orderItems.findMany();
   const allProducts = await prisma.products.findMany();
   const allOrderItems = await prisma.orderItems.findMany();
-  console.log(allOrderItems);
+
 
   await prisma.$disconnect();
 
@@ -39,7 +80,6 @@ export const loader = async ({ request }: { request: Request }) => {
 
 export default function Basket() {
   const data = useLoaderData();
-  console.log(data);
   const orderItems = data.orderItems;
   const orderArray: React.ReactElement[] = [];
 
@@ -49,16 +89,14 @@ export default function Basket() {
     let size = "";
     for (let j: number = 0; j < data.products.length; j++) {
       if (orderItems[i].productId == data.products[j].productID) {
-        console.log("product name", data.products[j].productName);
         artName = data.products[j].productName;
         price = data.products[j].productPrice;
         size = data.products[j].productSize;
         break;
       }
     }
-    console.log("art name", artName);
     orderArray[i] = (
-      <BasketItem key={i} price={price} art_name={artName} size={size} />
+      <BasketItem key={i} price={price} art_name={artName} size={size} productID = {orderItems[i].productId} />
     );
   }
   const actionData = useActionData();
@@ -72,7 +110,7 @@ export default function Basket() {
       </div>
       <div className="flex flex-row items-center  mt-20 ">
         <div className="flex flex-col items-left  mx-8">
-          <Form method="post" action="/checkout" name="basketItemForm">
+          <Form method="post" action="/basket" name="basketItemForm">
             {orderArray}
 
             <input

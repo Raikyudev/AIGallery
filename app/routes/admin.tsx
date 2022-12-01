@@ -39,8 +39,7 @@ const Table = (props) => {
   </table>)
 }
 
-const admin = () => {
-
+export default function admin()  {
   const [rows, setRows] = useState(customers)
 
     return (
@@ -67,5 +66,3 @@ const admin = () => {
           </div>
   );
 };
-
-export default admin;
