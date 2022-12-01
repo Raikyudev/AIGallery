@@ -107,9 +107,25 @@ const Row3 = (props3) => {
   </tr>)
 }
 
+const Header = ({ array }) => {
+  let counter = 0;
+  const headers = Object.keys(array[0] ?? {});
+  return headers.map((x) => {
+    ++counter;
+    return (
+      <th key={counter}>
+        {x}
+      </th>
+    );
+  });
+};
+
 const Table = (props) => {
   const {data} = props
   return(<table>
+    <tr>
+      <Header array={customers} />
+      </tr>
     <tbody>
       {data.map(row =>
         <Row customerID = {row.customerID}
@@ -127,6 +143,9 @@ const Table = (props) => {
 const Table2 = (props2) => {
   const {data} = props2
   return(<table>
+    <tr>
+      <Header array={orders} />
+      </tr>
     <tbody>
       {data.map(rows2 =>
         <Row2 orderID = {rows2.orderID}
@@ -141,6 +160,9 @@ const Table2 = (props2) => {
 const Table3 = (props3) => {
   const {data} = props3
   return(<table>
+    <tr>
+      <Header array={products} />
+      </tr>
     <tbody>
       {data.map(rows3 =>
         <Row3 productID = {rows3.productID}
@@ -184,6 +206,7 @@ export default function admin()  {
         Products in Stock
         </h1>
         <hr></hr>
+
         <div className="flex flex-row items-center justify-center">
         <Table3 data = {rows3}/>
         </div>
