@@ -8,7 +8,6 @@ import { PrismaClient } from "@prisma/client";
 import { useSubmit, useTransition } from "@remix-run/react";
 
 export const BasketItem = (props: {
-  image: string;
   price: number;
   art_name: string;
   size: string;
@@ -36,7 +35,7 @@ export const BasketItem = (props: {
         } flex flex-col items-center w-64 md:w-96 pt-2 pb-2  transition ease-in-out hover:scale-105 duration-1000`}
       >
         <img
-          src={"/assets/" + props.image}
+          src={"/assets/" + props.art_name + ".jpg"}
           className="w-60 h-60 md:w-80 md:h-80 mb-4 mt-2 rounded-lg shadow-2xl"
         />
         {isShown && (
@@ -55,7 +54,6 @@ export const BasketItem = (props: {
                 id="artName"
                 name="artName"
                 value={props.art_name}
-                defaultValue="name"
               />
             </div>
 

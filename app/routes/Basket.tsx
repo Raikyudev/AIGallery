@@ -120,7 +120,7 @@ export const loader = async ({ request }: { request: Request }) => {
   const allOrders = await prisma.orderItems.findMany();
   const allProducts = await prisma.products.findMany();
   const allOrderItems = await prisma.orderItems.findMany();
-  console.log
+  console.log(allOrderItems);
 
   await prisma.$disconnect();
 
@@ -136,18 +136,29 @@ export const loader = async ({ request }: { request: Request }) => {
 
 export default function Basket() {
   const data = useLoaderData();
+  console.log(data);
   const orderItems = data.orderItems;
   const orderArray: React.ReactElement[] = [];
+  
   for (let i: number = 0; i < orderItems.length; i++) {
-    orderArray[i] = (
+    let art_name = "";
+    let price = 0;
+    let size = "";
+    for(let j: number = 0; j < data.products.length; j++){
+      if(orderItems[i].productID == data.products[j].productID){
+        art_name = data.products[j].productName;
+        price = data.products[j].productPrice;
+        size = data.products[j].productSize;
+        break;
+      }
+    }
+    orderArray[i] = 
       <BasketItem
         key={i}
-        image={orderItems[i].product + ".jpg"}
-        price={orderItems[i].price}
-        art_name={orderItems[i].productName}
-        size={orderItems[i].productSize}
+        price={price}
+        art_name={art_name}
+        size={size}
       />
-    );
   }
   const actionData = useActionData();
   console.log("action", actionData);
