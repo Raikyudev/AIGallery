@@ -1,5 +1,5 @@
 import { Navbar } from "../components/Navbar";
-import { useState } from 'react'
+import { useState } from 'react';
 
 const customers = [
   {name: "Ayush", username: " ayush1243"},
@@ -27,11 +27,13 @@ const Table = (props) => {
 }
 
 const admin = () => {
+
   const [rows, setRows] = useState(customers)
 
     return (
         <div>
           <Navbar />
+
           <h1 className="text-3xl font-raleway,font-bold mt-5 text-center font-black">
         Customers
         </h1>
@@ -49,3 +51,5 @@ const admin = () => {
           </div>
   );
 };
+
+export default admin;
