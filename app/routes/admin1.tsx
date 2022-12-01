@@ -19,7 +19,7 @@ const admin = () => {
           <div>
             
             <Navbar />
-            <div className="flex flex-row items-center justify-center">
+            <div className="text-2xl flex flex-row items-center justify-center">
           <input type="text" placeholder="search..." className="search" onChange={(e) => setQuery(e.target.value)}/>
           </div>
   
