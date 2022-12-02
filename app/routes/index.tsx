@@ -1,17 +1,12 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Link } from "@remix-run/react";
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 import { json } from "@remix-run/node";
 
-
-
-
 export default function Index() {
-  
-
   return (
-    <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black overflow-hidden">
+    <div className="bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-rose-100 to-teal-100 overflow-hidden">
       <Navbar />
       <div className="font-raleway, font-bold  z-10 text-white  text-3xl sm:w-60 md:text-6xl  md:w-full  mt-24 md:mt-44 drop-shadow-lg text-center mr-2 ">
         The art of the future. Made by the future.
