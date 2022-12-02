@@ -115,6 +115,7 @@ export default function Basket() {
             Your basket is empty. Please add some items to your basket before
           </h1>
         </div>
+        <Footer />
       </div>
     );
   }
