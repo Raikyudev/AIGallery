@@ -93,19 +93,16 @@ export const authenticator = new Authenticator<SessionUser>({
 
 export const USER_LOGIN = 'user-login'
 authenticator.use(
-  new FormStrategy(async ({form, context}) => {
-    const rawEmail = form.get('email')
-    const rawPassword = form.get('password')
-
-    const {email, password} = Login.parse({
-      email: rawEmail,
-      password: rawPassword,
-    })
-
-    console.log('parsed data')
-    const user = await userLogin(email, password)
-    console.log('logged user in', {user})
-    return user
+  new FormStrategy(async ({ form }) => {
+    let email = form.get("email");
+    let password = form.get("password");
+    let user = await Login(email, password);
+    // the type of this user must match the type you pass to the Authenticator
+    // the strategy will automatically inherit the type if you instantiate
+    // directly inside the `use` method
+    return user;
   }),
-  USER_LOGIN,
-)
+  // each strategy has a name and can be changed to use another one
+  // same strategy multiple times, especially useful for the OAuth2 strategy.
+  "user-pass"
+);
