@@ -1,4 +1,4 @@
-import { json, createCookieSessionStorage, redirect} from "@remix-run/node"
+/*import { json, createCookieSessionStorage, redirect} from "@remix-run/node"
 import {prisma} from "./prisma.server"
 import type { RegisterForm, LoginForm } from "./types.server"
 import {createUser} from "./users.server"
@@ -68,7 +68,41 @@ export const createUserSession = async(userID: string, redirectTo: string) => {
     })
 }
 
+
 export const getStorage = () =>{
   return storage;
 }
+*/
+import type {Customers} from '@prisma/client'
+import {Authenticator, AuthorizationError} from 'remix-auth'
+import {FormStrategy} from 'remix-auth-form'
+import {
+  getSession,
+  commitSession,
+  destroySession,
+} from '~/utils/session.server'
+import {userLogin} from './users.server'
+import {Login} from './validations'
 
+export type SessionUser = Omit<Customers, 'hashedPassword'>
+export const authenticator = new Authenticator<SessionUser>({
+  getSession,
+  commitSession,
+  destroySession,
+})
+
+export const USER_LOGIN = 'user-login'
+authenticator.use(
+  new FormStrategy(async ({ form }) => {
+    let email = form.get("email");
+    let password = form.get("password");
+    let user = await Login(email, password);
+    // the type of this user must match the type you pass to the Authenticator
+    // the strategy will automatically inherit the type if you instantiate
+    // directly inside the `use` method
+    return user;
+  }),
+  // each strategy has a name and can be changed to use another one
+  // same strategy multiple times, especially useful for the OAuth2 strategy.
+  "user-pass"
+);

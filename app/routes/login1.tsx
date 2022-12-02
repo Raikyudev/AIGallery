@@ -1,10 +1,12 @@
-import {Layout} from "~/components/layout"
+/*import {Layout} from "~/components/layout"
 import {FormField} from "~/components/form-field"
 import { useState, useEffect, useRef } from 'react'
 import { ActionFunction, json } from "@remix-run/node";
 import { validateEmail, validatePassword, validateName, validateUsername } from "~/utils/validators.server";
 import { login, register } from "~/utils/auth.server";
 import { useActionData } from "@remix-run/react";
+import { Navbar } from "../components/Navbar";
+
 
 
 export const action: ActionFunction = async({request}) => {
@@ -18,6 +20,7 @@ export const action: ActionFunction = async({request}) => {
   let phoneNumber = form.get('phoneNumber')
 
   
+
   if (typeof action !== 'string' || typeof email !== 'string' || typeof password !== 'string' || typeof username !== 'string' || typeof phoneNumber !== 'string') {
     return json({ error: `Invalid Form Data`, form: action }, { status: 400 })
   }
@@ -66,12 +69,12 @@ export default function Login() {
   const [action,setAction] = useState('login');
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    username:'',
-    phoneNumber:'',
+    email: actionData?.fields?.email || '',
+    password: actionData?.fields?.password ||'',
+    firstName:actionData?.fields?.firstName || '',
+    lastName:actionData?.fields?.lastName || '',
+    username:actionData?.fields?.username ||'',
+    phoneNumber: actionData?.fields?.phoneNumber ||'',
   })
 
   // Updates the form data when an input changes
@@ -83,12 +86,12 @@ export default function Login() {
   useEffect(() => {
     if (!firstLoad.current) {
       const newState = {
-        email: actionData?.fields?.email || '',
-        password: actionData?.fields?.password ||'',
-        firstName:actionData?.fields?.firstName || '',
-        lastName:actionData?.fields?.lastName || '',
-        username:actionData?.fields?.username ||'',
-        phoneNumber: actionData?.fields?.phoneNumber ||'',
+        email: '',
+        password: '',
+        firstName:'',
+        lastName:'',
+        username:'',
+        phoneNumber:'',
       }
       setErrors(newState)
       setFormError('')
@@ -108,6 +111,7 @@ export default function Login() {
 
   return (
     <Layout>
+    <Navbar/>
       <div className="h-full justify-center items-center flex flex-col gap-y-4">
         <button onClick={() => setAction(action == 'login' ? 'register' : 'login')} 
         className="absolute top-8 right-8 rounded-xl bg-yellow-300 font-semibold text-blue-600 px-3 py-2 transition duration-300 ease-in-out hover:bg-yellow-400 hover:-translate-y-1">
@@ -115,10 +119,10 @@ export default function Login() {
         </button>
         <h2 className="text-5xl font-extrabold text-yellow-300">Welcome to A.I. Gallery</h2>
         <p className="font-semibold text-slate-300">{
-          action === 'login' ? 'Please Log In to Buy Art' : 'Sign up to Buy Art' }
+          action === 'login' ? 'Please Log In to view your account' : 'Sign up to Buy Art' }
         </p>
 
-        <form method="POST" className="rounded-2xl bg-gray-200 p-6 w-96">
+        <form method="POST" className="underline rounded-2xl bg-gray-200 p-6 w-96">
           <div className="text-xs font-semibold text-center tracking-wide text-red-500 w-full">{formError}</div>
           <FormField
             htmlFor="email"
@@ -180,3 +184,5 @@ export default function Login() {
     </Layout>
   )
 }
+*/
+export default {};
