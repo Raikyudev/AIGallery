@@ -171,13 +171,13 @@ export default function Basket() {
               className="font-bold bg-black text-white px-10 w-60 h-10  md:h-10 ml-1 md:ml-2 rounded-lg mt-5 hover:cursor-pointer "
               type="submit"
               name="submitType"
-              value="removeAll"
+              value="Remove All"
             />
             <input
               className="font-bold bg-black text-white px-10 w-60 h-10 md:h-10 ml-1 md:ml-2 rounded-lg mt-5 hover:cursor-pointer"
               type="submit"
               name="submitType"
-              value="checkout"
+              value="Checkout"
             />
           </Form>
         </div>
