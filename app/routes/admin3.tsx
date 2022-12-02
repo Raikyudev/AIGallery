@@ -1,6 +1,10 @@
 import { Navbar } from "../components/Navbar";
 import { useState } from 'react';
 
+import { PrismaClient } from "@prisma/client";
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+
 const customers = [
   {customerID: "1", customerLastName: "Glados", customerFirstName: "Sebastian", phoneNumber: "123", email: "email@gmail.com", password: "password", role: "USER", username: "jason"},
   {customerID: "2", customerLastName: "Dogg", customerFirstName: "Snoop", phoneNumber: "420", email: "email@gmail.com", password: "password", role: "USER", username: "snoopdogg"},
@@ -71,6 +75,23 @@ const products = [
   {productID: "55", productName:"80s London", productPrice:"25.00", productSize:"L"},
   {productID: "56", productName:"80s London", productPrice:"30.00", productSize:"XL"},
 ]
+export const loader = async ({ request }: { request: Request }) => {
+
+  const prisma = new PrismaClient();
+  const allUsers = await prisma.customers.findMany();
+  const allOrders = await prisma.orderItems.findMany();
+  const allProducts = await prisma.products.findMany();
+  const allOrderItems = await prisma.orderItems.findMany();
+
+  await prisma.$disconnect();
+
+  return json({
+    "users": allUsers,
+    "orders": allOrders,
+    "products": allProducts,
+    "orderItems": allOrderItems,
+  });
+};
 
 const Row = (props) => {
   const {customerID, customerLastName, customerFirstName, phoneNumber, email, password, role, username} = props
@@ -177,6 +198,7 @@ export default function admin()  {
   const [rows, setRows] = useState(customers)
   const [rows2, setRows2] = useState(orders)
   const [rows3, setRows3] = useState(products)
+  const data = useLoaderData();
     return (
         <div>
           <Navbar />
