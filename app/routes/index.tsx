@@ -12,7 +12,7 @@ export default function Index() {
         The art of the future. Made by the future.
       </div>
       <div className="font-raleway, flex flex-col items-center justify-center">
-        <button className=" font-raleway,font-bold text-center rounded-lg  bg-white p-2 md:p-4 cl:p-6  ml-auto mr-auto z-10 mt-12 md:mt-32  border-solid border-black border-2 ">
+        <button className=" font-raleway,font-bold text-center rounded-lg  bg-white p-2 md:p-4 cl:p-6  ml-auto mr-auto z-10 mt-12 md:mt-32  border-solid border-black border-2 hover:transform hover:scale-110 transition duration-500 ease-in-out    ">
           <Link to="/main">Explore A.I Gallery</Link>
         </button>
       </div>
