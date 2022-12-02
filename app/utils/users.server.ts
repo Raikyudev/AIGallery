@@ -18,4 +18,5 @@ export const createUser = async (user: RegisterForm) => {
     })
     return { id: newUser.customerID, email: user.email }
   }
+
   

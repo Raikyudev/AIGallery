@@ -14,9 +14,3 @@
     -webkit-tap-highlight-color: transparent;
   }
 }
-
-@layer base {
-  body {
-    @apply bg-slate-800 text-white;
-  }
-}

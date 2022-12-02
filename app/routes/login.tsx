@@ -8,6 +8,7 @@ import { useActionData } from "@remix-run/react";
 import { Navbar } from "../components/Navbar";
 
 
+
 export const action: ActionFunction = async({request}) => {
   const form = await request.formData()
   const action = form.get('_action')
@@ -19,6 +20,7 @@ export const action: ActionFunction = async({request}) => {
   let phoneNumber = form.get('phoneNumber')
 
   
+
   if (typeof action !== 'string' || typeof email !== 'string' || typeof password !== 'string' || typeof username !== 'string' || typeof phoneNumber !== 'string') {
     return json({ error: `Invalid Form Data`, form: action }, { status: 400 })
   }
@@ -67,12 +69,12 @@ export default function Login() {
   const [action,setAction] = useState('login');
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    username:'',
-    phoneNumber:'',
+    email: actionData?.fields?.email || '',
+    password: actionData?.fields?.password ||'',
+    firstName:actionData?.fields?.firstName || '',
+    lastName:actionData?.fields?.lastName || '',
+    username:actionData?.fields?.username ||'',
+    phoneNumber: actionData?.fields?.phoneNumber ||'',
   })
 
   // Updates the form data when an input changes
@@ -84,12 +86,12 @@ export default function Login() {
   useEffect(() => {
     if (!firstLoad.current) {
       const newState = {
-        email: actionData?.fields?.email || '',
-        password: actionData?.fields?.password ||'',
-        firstName:actionData?.fields?.firstName || '',
-        lastName:actionData?.fields?.lastName || '',
-        username:actionData?.fields?.username ||'',
-        phoneNumber: actionData?.fields?.phoneNumber ||'',
+        email: '',
+        password: '',
+        firstName:'',
+        lastName:'',
+        username:'',
+        phoneNumber:'',
       }
       setErrors(newState)
       setFormError('')
@@ -182,3 +184,4 @@ export default function Login() {
     </Layout>
   )
 }
+

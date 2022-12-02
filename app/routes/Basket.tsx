@@ -26,7 +26,7 @@ export const action: ActionFunction = async ({
       console.log("productID", productID);
       const deleteOrderItem = await prisma.orderItems.deleteMany({
         where: {
-          productId: productID
+          productId: productID,
         },
       });
       console.log(deleteOrderItem);
@@ -159,9 +159,14 @@ export default function Basket() {
       </div>
       <div className="flex flex-row items-center  mt-20 ">
         <div className="flex flex-col items-left  mx-8">
-          
-            {orderArray}
-            <Form method="post" action="/basket" name="basketItemForm">
+          {orderArray}
+
+          <div>
+            <h1 className="font-bold ml-4 text-2xl mt-10">
+              Total Price: £{totalPrice}
+            </h1>
+          </div>
+          <Form method="post" action="/basket" name="basketItemForm">
             <input
               className="font-bold bg-black text-white px-10 w-60 h-10  md:h-10 ml-1 md:ml-2 rounded-lg mt-5 hover:cursor-pointer "
               type="submit"
@@ -175,9 +180,6 @@ export default function Basket() {
               value="checkout"
             />
           </Form>
-          <div>
-            {totalPrice}
-          </div>
         </div>
       </div>
       <div className="mt-44">
