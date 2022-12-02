@@ -71,9 +71,25 @@ export const action: ActionFunction = async ({request}) => {
   }
 }
 
-export default function SignUpPage() {
-  const {error, fields} = useActionData<ActionData>() ?? {}
-  const transition = useTransition()
+export async function action({request}){
+  const formData = await request.formData()
+    const prisma = new PrismaClient();
+    const allUsers = await prisma.customers.create({
+    data: {customerFirstName: formData.get("customerFirstName"),
+    customerLastName: formData.get("customerLastName"), 
+    username: formData.get("username"),
+    email: formData.get("email"),
+    phoneNumber: formData.get("phoneNumber"),
+    password:formData.get("password")}
+  });
+  await prisma.$disconnect();
+  return true;
+}
+export default function IndexRoutes(){
+  const projects = useLoaderData();
+  const { state } = useTransition();
+  const busy = state === "submitting";
+
   return (
     <div className="max-w-sm mx-auto">
       <h1 className="text-xl text-slate-800 mb-8">Sign up</h1>

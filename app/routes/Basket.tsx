@@ -24,9 +24,9 @@ export const action: ActionFunction = async ({
       const productID: number = +product;
       console.log("product type", typeof productID);
       console.log("productID", productID);
-      const deleteOrderItem = await prisma.orderItems.delete({
+      const deleteOrderItem = await prisma.orderItems.deleteMany({
         where: {
-          productId: productID,
+          productId: productID
         },
       });
       console.log(deleteOrderItem);
@@ -121,16 +121,19 @@ export default function Basket() {
   const currentOrderID = data.currentOrder.orderID;
   const orderItems = data.orderItems;
   const orderArray: React.ReactElement[] = [];
+  let totalPrice = 0;
 
   for (let i: number = 0; i < orderItems.length; i++) {
     let artName = "";
     let price = 0;
     let size = "";
+
     for (let j: number = 0; j < data.products.length; j++) {
       if (orderItems[i].productId == data.products[j].productID) {
         artName = data.products[j].productName;
-        price = data.products[j].productPrice;
+        price = data.products[j].productPrice * orderItems[i].quantity;
         size = data.products[j].productSize;
+        totalPrice += price;
         break;
       }
     }
@@ -172,6 +175,9 @@ export default function Basket() {
               value="checkout"
             />
           </Form>
+          <div>
+            {totalPrice}
+          </div>
         </div>
       </div>
       <div className="mt-44">
