@@ -1,87 +1,89 @@
-import { EntryContext, LinksFunction, LoaderFunction, redirect} from "@remix-run/node";
-import { flushSync } from "react-dom";
-import stylesUrl from "../styles/root.css"
-import {Form, useLoaderData, useTransition} from "@remix-run/react"
-//import { db } from "../utils/db.server"
-import {  z } from "zod"
-import { Navbar } from "../components/Navbar";
-import { PrismaClient, Customers } from "@prisma/client";
+import {redirect, json} from '@remix-run/node'
+import type {ActionFunction} from '@remix-run/node'
+import {UserForm} from '~/components/UserForm'
+import {checkUserExists, userSignup} from '~/utils/users.server'
+import {Signup} from '~/utils/validations'
+import {useActionData, useTransition} from '@remix-run/react'
+import {Button} from '~/components/Button'
 
-
-export const userSchema = z.object({
-  customerFirstName: z.string().min(1),
-  customerLastName: z.string().min(1),
-  email: z.string().min(1),
-  phoneNumber: z.string().min(1),
-  password: z.string().min(1)
-
-})
-
-export async function loader({ request }) {
-  const prisma = new PrismaClient();
-  const allUsers = await prisma.customers.findMany();
-  console.log("allUser", allUsers);
-  await prisma.$disconnect();
-  return allUsers;
+export function badRequest<TActionData>(data: TActionData, status = 400) {
+  return json<TActionData>(data, {status})
 }
 
-export async function action({request}){
-  const formData = await request.formData()
-    const prisma = new PrismaClient();
-    const allUsers = await prisma.customers.create({
-    data: {customerFirstName: formData.get("customerFirstName"),
-    customerLastName: formData.get("customerLastName"), 
-    username: formData.get("username"),
-    email: formData.get("email"),
-    phoneNumber: formData.get("phoneNumber"),
-    password:formData.get("password")}
-  });
-  await prisma.$disconnect();
-  return true;
+type ActionData = {
+  error?: {
+    formError?: string[]
+    fieldErrors?: {
+      email?: string[]
+      password?: string[]
+    }
+  }
+  fields?: {
+    email: string
+    password: string
+  }
+}
 
-export default function IndexRoutes(){
-  const projects = useLoaderData();
-  const { state } = useTransition();
-  const busy = state === "submitting";
+export const action: ActionFunction = async ({request}) => {
+  const form = await request.formData()
+  const rawEmail = form.get('email')
+  const rawPassword = form.get('password')
 
+  if (typeof rawEmail !== 'string' || typeof rawPassword !== 'string') {
+    return badRequest<ActionData>({
+      error: {formError: [`Form not submitted correctly.`]},
+    })
+  }
+
+  const fields = {email: rawEmail, password: rawPassword}
+
+  const result = Signup.safeParse({
+    email: rawEmail,
+    password: rawPassword,
+  })
+
+  if (!result.success) {
+    const error = result.error.flatten()
+
+    return badRequest<ActionData>({fields, error})
+  }
+
+  const {email, password} = result.data
+
+  const userExists = await checkUserExists(email)
+
+  if (userExists) {
+    return badRequest<ActionData>({
+      fields,
+      error: {formError: [`User with ${rawEmail} already exists`]},
+    })
+  }
+
+  const user = await userSignup(email, password,)
+
+  if (user) {
+    return redirect('/login')
+  } else {
+    return badRequest<ActionData>({
+      fields,
+      error: {formError: [`Something went wrong, please contact support.`]},
+    })
+  }
+}
+
+export default function SignUpPage() {
+  const {error, fields} = useActionData<ActionData>() ?? {}
+  const transition = useTransition()
   return (
-  <div>
-    <Navbar />
-    <div id  = "userforms">
-      <div id ="customer">
-       <div id = "signup">
-        
-        <Form method= "post" id= "signup">
-        <h2>Customer Signup</h2>
-          <input type ="text" name="customerFirstName" placeholder="First Name"/><br/>
-          <input type ="text" name="customerLastName" placeholder="Last Name"/><br/>
-          <input type ="text" name="username" placeholder="Username"/><br/>
-          <input type ="text" name="username" placeholder="Username"/><br/>
-          <input type ="text" name="email" placeholder="Email"/><br/>
-          <input type ="text" name="phoneNumber" placeholder="Phone Number"/><br/>
-          <input id="password" type ="password" name="password" placeholder="Password"/><br/>
-          <input id="confirm" type ="password" name="confirm" placeholder="Confirm Password"/><br/>
-          <button type="submit" disabled={busy}>
-          {busy ? "Submitting..." : "Submit"}
-        </button>
-          <button type="submit" disabled={busy}>
-          {busy ? "Submitting..." : "Submit"}
-        </button>
-        </Form> 
- 
-        <br/>
-        </div>
-        <div id = "login">
-        <form method ="POST" id= "login">
-        <h2>Already have an account</h2>
-          <input type ="text" name="names" placeholder="First Name"/><br/>
-          <input type ="password" name="password2" placeholder="Password"/><br/>
-          <button type = "submit" >Submit</button>
-        </form> 
-        </div>
-        </div>
+    <div className="max-w-sm mx-auto">
+      <h1 className="text-xl text-slate-800 mb-8">Sign up</h1>
+      <UserForm error={error} fields={fields}>
+        <Button type="submit" disabled={transition.state !== 'idle'}>
+          {transition.state === 'submitting' || 'loading'
+            ? 'Sign up'
+            : 'Signing up....'}
+        </Button>
+      </UserForm>
     </div>
-
-      </div>
   )
 }

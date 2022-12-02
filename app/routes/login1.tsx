@@ -1,10 +1,11 @@
-import {Layout} from "~/components/layout"
+/*import {Layout} from "~/components/layout"
 import {FormField} from "~/components/form-field"
 import { useState, useEffect, useRef } from 'react'
 import { ActionFunction, json } from "@remix-run/node";
 import { validateEmail, validatePassword, validateName, validateUsername } from "~/utils/validators.server";
 import { login, register } from "~/utils/auth.server";
 import { useActionData } from "@remix-run/react";
+
 
 
 export const action: ActionFunction = async({request}) => {
@@ -18,6 +19,7 @@ export const action: ActionFunction = async({request}) => {
   let phoneNumber = form.get('phoneNumber')
 
   
+
   if (typeof action !== 'string' || typeof email !== 'string' || typeof password !== 'string' || typeof username !== 'string' || typeof phoneNumber !== 'string') {
     return json({ error: `Invalid Form Data`, form: action }, { status: 400 })
   }
@@ -66,12 +68,12 @@ export default function Login() {
   const [action,setAction] = useState('login');
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    username:'',
-    phoneNumber:'',
+    email: actionData?.fields?.email || '',
+    password: actionData?.fields?.password ||'',
+    firstName:actionData?.fields?.firstName || '',
+    lastName:actionData?.fields?.lastName || '',
+    username:actionData?.fields?.username ||'',
+    phoneNumber: actionData?.fields?.phoneNumber ||'',
   })
 
   // Updates the form data when an input changes
@@ -83,12 +85,12 @@ export default function Login() {
   useEffect(() => {
     if (!firstLoad.current) {
       const newState = {
-        email: actionData?.fields?.email || '',
-        password: actionData?.fields?.password ||'',
-        firstName:actionData?.fields?.firstName || '',
-        lastName:actionData?.fields?.lastName || '',
-        username:actionData?.fields?.username ||'',
-        phoneNumber: actionData?.fields?.phoneNumber ||'',
+        email: '',
+        password: '',
+        firstName:'',
+        lastName:'',
+        username:'',
+        phoneNumber:'',
       }
       setErrors(newState)
       setFormError('')
@@ -180,3 +182,4 @@ export default function Login() {
     </Layout>
   )
 }
+*/
