@@ -3,7 +3,7 @@ import { Footer } from "../components/Footer";
 import bg from "../assets/AI_BG (2).png";
 import logo3 from "../assets/logo3.png";
 import jasonpfp from "../assets/giphy (1).gif";
-import sebpfp from "../assets/sebpfp.jpg";
+import sebpfp from "../assets/sebpfp.png";
 import ab from "../assets/ab.png";
 import ted from "../assets/tec_in_ted.png";
 import hatem from "../assets/hatem.png";
