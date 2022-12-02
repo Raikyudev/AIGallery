@@ -163,7 +163,7 @@ export default function Basket() {
 
           <div>
             <h1 className="font-bold ml-4 text-2xl mt-10">
-              Total Price: £{totalPrice}
+              Total Price: £{totalPrice.toFixed(2)}
             </h1>
           </div>
           <Form method="post" action="/basket" name="basketItemForm">
