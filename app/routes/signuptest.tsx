@@ -1,4 +1,4 @@
-import {redirect, json} from '@remix-run/node'
+/*import {redirect, json} from '@remix-run/node'
 import type {ActionFunction} from '@remix-run/node'
 import {UserForm} from '~/components/UserForm'
 import {checkUserExists, userSignup} from '~/utils/users.server'
@@ -105,3 +105,5 @@ export default function IndexRoutes(){
     </div>
   )
 }
+*/
+export default{};

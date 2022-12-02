@@ -6,8 +6,6 @@ import { useCart } from "~/hooks/useCart";
 import { ActionFunction, json } from "@remix-run/node";
 import { useLoaderData, useActionData } from "@remix-run/react";
 import { PrismaClient} from "@prisma/client";
-import { getStorage } from "~/utils/auth.server";
-
 
 
 
@@ -117,14 +115,6 @@ export const action: ActionFunction = async({ request }: { request: Request }) =
 }
 
 export const loader = async ({ request }: { request: Request }) => {
-  const session = await getStorage().getSession(request.headers.get("Cookie"));
-  console.log(session.get("cookie-session"));
-  if(session.has("userID")){
-    console.log("Logged in!");
-  }
-  else{
-    console.log("Not logged in :(");
-  }
   const prisma = new PrismaClient();
   const allUsers = await prisma.customers.findMany();
   const allOrders = await prisma.orderItems.findMany();

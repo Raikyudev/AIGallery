@@ -39,7 +39,7 @@ export let loader: LoaderFunction = async ({request}) => {
   }
 }
 
-export default function SignInPage() {
+export default function Signin() {
   const {error} = useLoaderData<LoaderData>()
   const transition = useTransition()
   return (
