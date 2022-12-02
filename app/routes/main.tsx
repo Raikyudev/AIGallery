@@ -161,7 +161,7 @@ export default function Main() {
   console.log("action", actionData);
 
   return (
-    <div className="bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500">
+    <div className="bg-gradient-to-r from-cyan-500 to-blue-500">
       <Navbar />
       <main className="flex flex-col items-center mt-20 mx-28">
         <div className="grid gap-x-64  gap-y-32 grid-cols-1 grid-flow-row md:grid-cols-2 place-items-center ">
