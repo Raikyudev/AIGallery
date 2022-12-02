@@ -1,4 +1,4 @@
-/*import {Layout} from "~/components/layout"
+import {Layout} from "~/components/layout"
 import {FormField} from "~/components/form-field"
 import { useState, useEffect, useRef } from 'react'
 import { ActionFunction, json } from "@remix-run/node";
@@ -184,4 +184,3 @@ export default function Login() {
     </Layout>
   )
 }
-*/

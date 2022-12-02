@@ -5,6 +5,8 @@ import {checkUserExists, userSignup} from '~/utils/users.server'
 import {Signup} from '~/utils/validations'
 import {useActionData, useTransition} from '@remix-run/react'
 import {Button} from '~/components/Button'
+import { PrismaClient } from '@prisma/client'
+import { useLoaderData } from '@remix-run/react'
 
 export function badRequest<TActionData>(data: TActionData, status = 400) {
   return json<TActionData>(data, {status})
