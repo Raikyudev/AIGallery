@@ -13,7 +13,7 @@ export const createUser = async (user: RegisterForm) => {
         customerFirstName: user.firstName,
         customerLastName: user.lastName,
         username: "WIP",
-        phoneNumber: "0"
+        phoneNumber: 0
       },
     })
     return { id: newUser.customerID, email: user.email }
